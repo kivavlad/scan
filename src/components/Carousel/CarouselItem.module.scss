@@ -1,0 +1,26 @@
+.carousel__wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 18px;
+    padding: 20px;
+    width: 380px;
+    height: 220px;
+    margin: 10px 30px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 20px 0px #00000033;
+}
+
+.carousel__img {
+    width: 54px;
+    height: 54px;
+}
+
+.carousel__text_wrapper {
+
+    p {
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 21px;
+    }
+}
