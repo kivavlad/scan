@@ -1,16 +1,11 @@
 import { Outlet } from "react-router-dom";
 import { Header } from "../Header/Header";
 
-type IProps = {
-    isLogged: boolean;
-    setIsLogged: any;
-}
-
-export const Layout: React.FC<IProps> = (props) => {
+export const Layout: React.FC = () => {
 
     return (
         <>
-            <Header {...props} />
+            <Header />
             <Outlet />
         </>
     )

@@ -21,7 +21,7 @@
     font-size: 16px;
     font-weight: 400;
     line-height: 24px;
-    max-width: 480px;
+    max-width: 400px;
     margin-bottom: 70px;
 }
 
@@ -53,4 +53,37 @@
 
 .carousel__wrapper {
     margin-top: 70px;
+}
+
+/* Image */
+.home__image_section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 70px;
+}
+
+.home__left__image {
+    width: 40%;
+}
+
+.home__rigth__image {
+    width: 35%;
+}
+
+/* Tarifs */
+.tarifs__section {
+    margin-top: 105px;
+}
+
+.tarifs__title {
+    font-family: 'Ferry';
+    font-size: 42px;
+}
+
+.tafifs__cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 37px;
+    margin: 70px 0 118px 0;
 }
