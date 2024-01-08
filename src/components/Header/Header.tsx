@@ -1,14 +1,11 @@
 import { Link } from 'react-router-dom';
 import styles from './Header.module.scss';
 import logo from '../../assets/icons/header-logo.svg';
+import { useState } from 'react';
 
-type IProps = {
-    isLogged: boolean;
-    setIsLogged: any;
-}
 
-export const Header: React.FC<IProps> = (props) => {
-    const { isLogged, setIsLogged } = props;
+export const Header: React.FC = () => {
+    const [isLogged] = useState(false);
 
     return (
         <header className={styles.header}>
@@ -26,7 +23,7 @@ export const Header: React.FC<IProps> = (props) => {
                     </div>
 
                     {
-                        !isLogged ?
+                        isLogged ?
                             <>
                                 <div className={styles.header__tarifs_info_wrapper}>
                                     <div className={styles.header__tarifs_info_wrapper__left}>

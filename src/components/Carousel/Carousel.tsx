@@ -7,6 +7,8 @@ import "slick-carousel/slick/slick-theme.css";
 import stopwatchIcon from '../../assets/icons/stopwatch.svg';
 import loopIcon from '../../assets/icons/loop.svg';
 import lockIcon from '../../assets/icons/lock.svg';
+import prevArrow from '../../assets/icons/prev_arrow.svg';
+import nextArrow from '../../assets/icons/next_arrow.svg';
 
 
 export const Carousel: React.FC = () => {
@@ -21,24 +23,20 @@ export const Carousel: React.FC = () => {
     ]
 
     function RightNavArrow(props: CustomArrowProps): React.JSX.Element {
-        const { className, style, onClick } = props;
+        const { className, onClick } = props;
         return (
-            <div
-                className={className}
-                style={{ ...style, display: "block", background: "#D9D9D9", borderRadius: "50%" }}
-                onClick={onClick}
-            />
+            <div className={className} style={{width: '32px', height: '32px', top: '45%'}} onClick={onClick}>
+                <img src={prevArrow} alt='<--' />
+            </div>
         );
     }
 
     function LeftNavArrow(props: CustomArrowProps): React.JSX.Element {
-        const { className, style, onClick } = props;
+        const { className, onClick } = props;
         return (
-            <div
-                className={className}
-                style={{ ...style, display: "block", background: "#D9D9D9", borderRadius: "50%" }}
-                onClick={onClick}
-            />
+            <div className={className} style={{width: '32px', height: '32px', top: '45%'}} onClick={onClick}>
+                <img src={nextArrow} alt='-->' />
+            </div>
         );
     }
 
@@ -48,6 +46,10 @@ export const Carousel: React.FC = () => {
         infinite: true,
         speed: 500,
         slidesToShow: 3,
+        responsive: [
+            { breakpoint: 1100, settings: { slidesToShow: 2, } },
+            { breakpoint: 600, settings: { slidesToShow: 1, } },
+        ],
         nextArrow: <LeftNavArrow />,
         prevArrow: <RightNavArrow />,
     };

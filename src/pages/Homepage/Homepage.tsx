@@ -1,6 +1,11 @@
+import { Carousel } from '../../components/Carousel/Carousel';
+import { Tarifs } from '../../components/Tarifs/Tarifs';
+
 import styles from './Homepage.module.scss';
 import heroImg from '../../assets/images/hero-img.jpg';
-import { Carousel } from '../../components/Carousel/Carousel';
+import homeLeftImg from '../../assets/images/home-left1.jpg';
+import homeRightImg from '../../assets/images/home-right.jpg';
+
 
 export const Homepage: React.FC = () => {
 
@@ -30,6 +35,21 @@ export const Homepage: React.FC = () => {
                 </div>
             </section>
 
+            <section className={styles.home__image_section}>
+                <div className={styles.home__left__image}>
+                    <img src={homeLeftImg} alt='' />
+                </div>
+                <div className={styles.home__rigth__image}>
+                    <img src={homeRightImg} alt='' />
+                </div>
+            </section>
+
+            <section className={styles.tarifs__section}>
+                <h1 className={styles.tarifs__title}>наши тарифы</h1>
+                <div className={styles.tafifs__cards}>
+                    <Tarifs />
+                </div>
+            </section>
 
         </div>
     )
