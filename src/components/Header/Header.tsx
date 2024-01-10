@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import styles from './Header.module.scss';
 import logo from '../../assets/icons/header-logo.svg';
 import { useState } from 'react';
+import { HeaderBurger } from '../HeaderBurger/HeaderBurger';
 
 
 export const Header: React.FC = () => {
@@ -10,6 +11,7 @@ export const Header: React.FC = () => {
     return (
         <header className={styles.header}>
             <div className='container'>
+                
                 <div className={styles.header__content}>
 
                     <div className={styles.header__logo}>
@@ -24,7 +26,7 @@ export const Header: React.FC = () => {
 
                     {
                         isLogged ?
-                            <>
+                            <div className={styles.isLogged__wrapper}>
                                 <div className={styles.header__tarifs_info_wrapper}>
                                     <div className={styles.header__tarifs_info_wrapper__left}>
                                         <p>Использовано компаний</p>
@@ -43,7 +45,7 @@ export const Header: React.FC = () => {
                                     </div>
                                     <div className={styles.user__logo}></div>
                                 </div>
-                            </>
+                            </div>
                         :
                             <div className={styles.header__login_wrapper}>
                                 <span className={styles.header__register_link}>Зарегистрироваться</span>
@@ -52,7 +54,12 @@ export const Header: React.FC = () => {
                             </div>
                     }
 
+                    <div className={styles.header__burger_wrapper}>
+                        <HeaderBurger />
+                    </div>
+
                 </div>
+
             </div>
         </header>
     )

@@ -43,12 +43,12 @@ export const Carousel: React.FC = () => {
     const settings = {
         dots: false,
         arrows: true,
-        infinite: true,
+        infinite: false,
         speed: 500,
         slidesToShow: 3,
         responsive: [
             { breakpoint: 1100, settings: { slidesToShow: 2, } },
-            { breakpoint: 600, settings: { slidesToShow: 1, } },
+            { breakpoint: 850, settings: { slidesToShow: 1, } },
         ],
         nextArrow: <LeftNavArrow />,
         prevArrow: <RightNavArrow />,

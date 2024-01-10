@@ -1,8 +1,11 @@
 .tarif_card__container {
-    width: 415px;
     min-height: 540px;
     border-radius: 10px;
     box-shadow: 0px 0px 20px 0px #00000033;
+
+    @media (max-width: 1100px) {
+        min-height: auto;
+    }
 }
 
 .card__header {
@@ -22,16 +25,28 @@
     .tarif__title {
         font-size: 26px;
         font-weight: 500;
+
+        @media (max-width: 1100px) {
+            font-size: 24px;
+        }
     }
 
     .tafifs__description {
         font-size: 16px;
         font-weight: 400;
+
+        @media (max-width: 1100px) {
+            font-size: 14px;
+        }
     }
 }
 
 .card__header_image {
     width: 96px;
+
+    @media (max-width: 1100px) {
+        width: 80px;
+    }
 }
 
 .card__main {
@@ -53,6 +68,10 @@
     .tarif__price {
         font-size: 28px;
         font-weight: 500;
+
+        @media (max-width: 1100px) {
+            font-size: 26px;
+        }
     }
 
     .tarif__oldprice {
@@ -61,11 +80,19 @@
         text-decoration: line-through;
         color: var(--gray-300);
     }
+
+    @media (max-width: 1100px) {
+        font-size: 20px;
+    }
 }
 
 .price__description {
     font-size: 16px;
     font-weight: 400;
+
+    @media (max-width: 1100px) {
+        font-size: 14px;
+    }
 }
 
 .card__main_tarif_options_wrapper {
@@ -73,11 +100,19 @@
     flex-direction: column;
     gap: 10px;
     margin-top: 60px;
+
+    @media (max-width: 1100px) {
+        margin-top: 40px;
+    }
 }
 
 .tarif__options__title {
     font-size: 20px;
     font-weight: 500;
+
+    @media (max-width: 1100px) {
+        font-size: 18px;
+    }
 }
 
 .tarif__options_list {
@@ -98,11 +133,19 @@
     span {
         font-size: 16px;
         font-weight: 400;
+
+        @media (max-width: 1100px) {
+            font-size: 14px;
+        }
     }
 }
 
 .card__main_button_wrapper {
     margin: 55px 30px 24px 30px;
+
+    @media (max-width: 1100px) {
+        margin: 35px 20px 24px 20px;
+    }
 
     .tafifs__btn {
         width: 100%;

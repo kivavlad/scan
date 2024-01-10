@@ -4,15 +4,7 @@
     src: url('./assets/fonts/ferry_black.otf');
 }
 
-@font-face {
-    font-display: swap;
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 400;
-    font-weight: 500;
-    src: url('./assets/fonts/inter-v13-latin-regular.woff2') format('woff2');
-    src: url('./assets/fonts/inter-v13-latin-500.woff2') format('woff2');
-}
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
 
 /* Reset and base styles  */
 * {
@@ -145,4 +137,12 @@ body {
     max-width: 1320px;
     margin: 0 auto;
     padding: 0 10px;
+}
+
+.slick-slider {
+    margin: 0 15px;
+}
+
+.slick-slide {
+    padding: 0 20px;
 }

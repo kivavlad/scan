@@ -1,6 +1,11 @@
 /* Hero */
 .hero__section {
     display: flex;
+
+    @media (max-width: 900px) {
+        display: flex;
+        flex-direction: column;
+    }
 }
 
 .hero__text_wrapper {
@@ -8,6 +13,14 @@
     flex-direction: column;
     width: 60%;
     margin-top: 60px;
+
+    @media (max-width: 900px) {
+        width: 100%;
+    }
+
+    @media (max-width: 550px) {
+        margin-top: 20px;
+    }
 }
 
 .hero__title {
@@ -15,11 +28,50 @@
     font-size: 58px;
     line-height: 68px;
     margin-bottom: 20px;
+
+    @media (max-width: 1290px) {
+        font-size: 56px;
+        line-height: 64px;
+    }
+
+    @media (max-width: 1100px) {
+        font-size: 44px;
+        line-height: 54px;
+    }
+
+    @media (max-width: 900px) {
+        font-size: 56px;
+        line-height: 64px;
+    }
+
+    @media (max-width: 700px) {
+        font-size: 44px;
+        line-height: 54px;
+    }
+
+    @media (max-width: 550px) {
+        font-size: 40px;
+        line-height: 50px;
+    }
+
+    @media (max-width: 500px) {
+        font-size: 36px;
+        line-height: 46px;
+    }
+
+    @media (max-width: 450px) {
+        font-size: 32px;
+        line-height: 42px;
+    }
+
+    @media (max-width: 400px) {
+        font-size: 28px;
+        line-height: 40px;
+    }
 }
 
 .hero__subtitle {
     font-size: 16px;
-    font-weight: 400;
     line-height: 24px;
     max-width: 400px;
     margin-bottom: 70px;
@@ -34,11 +86,26 @@
     height: 50px;
     border-radius: 5px;
     background-color: var(--blue);
+
+    @media (max-width: 1100px) {
+        width: 280px;
+    }
+
+    @media (max-width: 550px) {
+        width: 100%;
+    }
 }
 
 .hero__image_wrapper {
     width: 50%;
     margin-top: 20px;
+
+    @media (max-width: 900px) {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+    }
 }
 
 /* Carousel */
@@ -49,6 +116,18 @@
 .carousel__title {
     font-family: 'Ferry';
     font-size: 42px;
+
+    @media (max-width: 900px) {
+        font-size: 38px;
+    }
+
+    @media (max-width: 550px) {
+        font-size: 32px;
+    }
+
+    @media (max-width: 450px) {
+        font-size: 26px;
+    }
 }
 
 .carousel__wrapper {
@@ -65,10 +144,21 @@
 
 .home__left__image {
     width: 40%;
+
+    @media (max-width: 900px) {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+    }
 }
 
 .home__rigth__image {
     width: 35%;
+
+    @media (max-width: 900px) {
+        display: none;
+    }
 }
 
 /* Tarifs */
@@ -79,6 +169,18 @@
 .tarifs__title {
     font-family: 'Ferry';
     font-size: 42px;
+
+    @media (max-width: 900px) {
+        font-size: 38px;
+    }
+
+    @media (max-width: 550px) {
+        font-size: 32px;
+    }
+
+    @media (max-width: 450px) {
+        font-size: 26px;
+    }
 }
 
 .tafifs__cards {
@@ -86,4 +188,14 @@
     grid-template-columns: repeat(3, 1fr);
     gap: 37px;
     margin: 70px 0 118px 0;
+
+    @media (max-width: 1100px) {
+        gap: 20px;
+    }
+
+    @media (max-width: 900px) {
+        margin: 70px auto 118px auto;
+        width: 350px;
+        grid-template-columns: repeat(1, 1fr);
+    }
 }

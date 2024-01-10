@@ -1,0 +1,34 @@
+.footer {
+    width: 100%;
+    height: 140px;
+    background-color: var(--green-blue);
+}
+
+.footer__content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.footer__contacts {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: flex-end;
+    gap: 2px;
+}
+
+.contacts__item {
+    font-size: 14px;
+    color: var(--white);
+}
+
+.link {
+    font-size: 14px;
+    color: var(--white);
+    margin-top: 10px;
+
+    span {
+        color: var(--gray-100);
+    }
+}
