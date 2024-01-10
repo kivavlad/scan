@@ -1,0 +1,33 @@
+{
+  "files": {
+    "main.css": "/Scan-service-ts/static/css/main.22586a5e.css",
+    "main.js": "/Scan-service-ts/static/js/main.1edd3469.js",
+    "static/media/header-logo.svg": "/Scan-service-ts/static/media/header-logo.d6731ab5578db6ce8442c37221685db3.svg",
+    "static/media/hero-img.jpg": "/Scan-service-ts/static/media/hero-img.b8b2509f2b16833f89bb.jpg",
+    "static/media/ferry_black.otf": "/Scan-service-ts/static/media/ferry_black.8d1c2bfebe1bfba898ae.otf",
+    "static/media/scan-white-logo.svg": "/Scan-service-ts/static/media/scan-white-logo.f916e6d97df9bdf5ef614efcc28143da.svg",
+    "static/media/home-left1.jpg": "/Scan-service-ts/static/media/home-left1.1c8530c11e944dd3bdf0.jpg",
+    "static/media/home-right.jpg": "/Scan-service-ts/static/media/home-right.36648827ce59179a1ee9.jpg",
+    "static/media/lamp.svg": "/Scan-service-ts/static/media/lamp.07ee13052643ebc610e135d240f387ff.svg",
+    "static/media/darts.svg": "/Scan-service-ts/static/media/darts.8379c83e1658c1f7c78baf7ce7055e11.svg",
+    "static/media/green-check-tarif_option.svg": "/Scan-service-ts/static/media/green-check-tarif_option.9525693ef0b5722302c7ce9ff0002dfb.svg",
+    "static/media/lock.svg": "/Scan-service-ts/static/media/lock.cd26f67bdf714f84aa74994f73883f7f.svg",
+    "static/media/loop.svg": "/Scan-service-ts/static/media/loop.22e7ee0e0a8199527cfcca5a5381a31f.svg",
+    "static/media/stopwatch.svg": "/Scan-service-ts/static/media/stopwatch.fb943e7595f8bf37f6caaf9d5ed1ec22.svg",
+    "static/media/slick.svg": "/Scan-service-ts/static/media/slick.2630a3e3eab21c607e21.svg",
+    "static/media/slick.eot": "/Scan-service-ts/static/media/slick.a4e97f5a2a64f0ab1323.eot",
+    "static/media/slick.ttf": "/Scan-service-ts/static/media/slick.c94f7671dcc99dce43e2.ttf",
+    "static/media/laptop.svg": "/Scan-service-ts/static/media/laptop.18cac7b0ec77b15e76a7001d6c24dc34.svg",
+    "static/media/slick.woff": "/Scan-service-ts/static/media/slick.295183786cd8a1389865.woff",
+    "static/media/prev_arrow.svg": "/Scan-service-ts/static/media/prev_arrow.70fed5f9d8d35d342170fb95963c24db.svg",
+    "static/media/next_arrow.svg": "/Scan-service-ts/static/media/next_arrow.72d47462738646245861d715c3e2dc2a.svg",
+    "index.html": "/Scan-service-ts/index.html",
+    "static/media/close-icon.svg": "/Scan-service-ts/static/media/close-icon.bfb90a0ce9d8f2d7e2e981368630c821.svg",
+    "main.22586a5e.css.map": "/Scan-service-ts/static/css/main.22586a5e.css.map",
+    "main.1edd3469.js.map": "/Scan-service-ts/static/js/main.1edd3469.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.22586a5e.css",
+    "static/js/main.1edd3469.js"
+  ]
+}
