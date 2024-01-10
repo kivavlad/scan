@@ -15,6 +15,10 @@
     align-items: center;
     justify-content: center;
     gap: 49px;
+
+    @media (max-width: 900px) {
+        display: none;
+    }
 }
 
 .header__nav_item {
@@ -28,6 +32,10 @@
     align-items: center;
     justify-content: center;
     gap: 18px;
+
+    @media (max-width: 900px) {
+        display: none;
+    }
 }
 
 .header__register_link {
@@ -133,5 +141,19 @@
         font-size: 14px;
         font-weight: 700;
         color: var(--green);
+    }
+}
+
+.isLogged__wrapper {
+    @media (max-width: 900px) {
+        display: none;
+    }
+}
+
+.header__burger_wrapper {
+    display: none;
+
+    @media (max-width: 900px) {
+        display: block;
     }
 }
