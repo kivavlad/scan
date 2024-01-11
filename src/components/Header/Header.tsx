@@ -1,9 +1,8 @@
 import { Link } from 'react-router-dom';
-import styles from './Header.module.scss';
-import logo from '../../assets/icons/header-logo.svg';
 import { useState } from 'react';
 import { HeaderBurger } from '../HeaderBurger/HeaderBurger';
-
+import styles from './Header.module.scss';
+import logo from '../../assets/icons/header-logo.svg';
 
 export const Header: React.FC = () => {
     const [isLogged] = useState(false);
@@ -20,8 +19,8 @@ export const Header: React.FC = () => {
 
                     <div className={styles.header__nav}>
                         <Link to="/" className={styles.header__nav_item}>Главная</Link>
-                        <a href="/" className={styles.header__nav_item}>Тарифы</a>
-                        <a href="/" className={styles.header__nav_item}>FAQ</a>
+                        <Link to="/" className={styles.header__nav_item}>Тарифы</Link>
+                        <Link to="/" className={styles.header__nav_item}>FAQ</Link>
                     </div>
 
                     {
@@ -50,7 +49,7 @@ export const Header: React.FC = () => {
                             <div className={styles.header__login_wrapper}>
                                 <span className={styles.header__register_link}>Зарегистрироваться</span>
                                 <span className={styles.header__login_line}></span>
-                                <button type='button' className={styles.header__login_button}>Войти</button>
+                                <Link to="/login" className={styles.header__login_button}>Войти</Link>
                             </div>
                     }
 

@@ -75,6 +75,11 @@
     line-height: 24px;
     max-width: 400px;
     margin-bottom: 70px;
+
+    @media (max-width: 550px) {
+        max-width: 100%;
+        margin-bottom: 30px;
+    }
 }
 
 .hero__btn {
@@ -126,12 +131,16 @@
     }
 
     @media (max-width: 450px) {
-        font-size: 26px;
+        font-size: 28px;
     }
 }
 
 .carousel__wrapper {
     margin-top: 70px;
+
+    @media (max-width: 550px) {
+        margin-top: 30px;
+    }
 }
 
 /* Image */
@@ -179,7 +188,7 @@
     }
 
     @media (max-width: 450px) {
-        font-size: 26px;
+        font-size: 28px;
     }
 }
 
@@ -197,5 +206,9 @@
         margin: 70px auto 118px auto;
         width: 350px;
         grid-template-columns: repeat(1, 1fr);
+    }
+
+    @media (max-width: 550px) {
+        margin: 35px auto 60px auto;
     }
 }

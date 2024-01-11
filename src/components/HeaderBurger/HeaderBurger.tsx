@@ -1,12 +1,18 @@
+import { Link, useNavigate } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 import styles from './HeaderBurger.module.scss';
 import logo from '../../assets/icons/scan-white-logo.svg';
 import closeIcon from '../../assets/icons/close-icon.svg';
-import { Link } from 'react-router-dom';
-import { useEffect, useState } from 'react';
 
 export const HeaderBurger: React.FC = () => {
     const [activeBurger, setActiveBurger] = useState(false);
     const [isLogged] = useState(false);
+    const navigate = useNavigate();
+
+    function toLoginPage() {
+        navigate("/login");
+        setActiveBurger(false);
+    }
 
     useEffect(() => {
         if (activeBurger) {
@@ -40,9 +46,9 @@ export const HeaderBurger: React.FC = () => {
 
                     <div className={styles.burger__menu_main}>
                         <div className={styles.burger__menu_nav}>
-                            <Link to="/" className={styles.burger__menu_nav_item}>Главная</Link>
-                            <Link to="/" className={styles.burger__menu_nav_item}>Тарифы</Link>
-                            <Link to="/" className={styles.burger__menu_nav_item}>FAQ</Link>
+                            <Link to="/" onClick={() => setActiveBurger(false)} className={styles.burger__menu_nav_item}>Главная</Link>
+                            <Link to="/" onClick={() => setActiveBurger(false)} className={styles.burger__menu_nav_item}>Тарифы</Link>
+                            <Link to="/" onClick={() => setActiveBurger(false)} className={styles.burger__menu_nav_item}>FAQ</Link>
                         </div>
 
                         {
@@ -70,7 +76,7 @@ export const HeaderBurger: React.FC = () => {
                             :
                                 <div className={styles.burger__login_wrapper}>
                                     <span className={styles.burger__register_link}>Зарегистрироваться</span>
-                                    <button type='button' className={styles.burger__login_button}>Войти</button>
+                                    <button type='button' onClick={toLoginPage} className={styles.burger__login_button}>Войти</button>
                                 </div>
                         }
                     </div>
