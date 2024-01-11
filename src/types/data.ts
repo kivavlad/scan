@@ -16,3 +16,8 @@ export type ITarifs = {
         button: {bg: string, color: string},
     }
 }
+
+export type IUserData = {
+    login: string;
+    password: string;
+}

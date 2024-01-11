@@ -53,12 +53,16 @@
 }
 
 .header__login_button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: 65px;
     height: 26px;
     border-radius: 5px;
     background-color: var(--ligth-blue);
     font-size: 14px;
     font-weight: 500;
+    color: var(--black);
     transition: .2s ease;
 
     &:active {

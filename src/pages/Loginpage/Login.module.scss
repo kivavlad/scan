@@ -1,0 +1,87 @@
+.wrapper {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    min-height: 80vh;
+    margin-top: 60px;
+
+    @media (max-width: 900px) {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-height: 100%;
+        margin-top: 20px;
+    }
+}
+
+.login_page__left {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 55%;
+
+    @media (max-width: 900px) {
+        width: 80%;
+    }
+
+    @media (max-width: 600px) {
+        width: 100%;
+    }
+}
+
+.title {
+    font-family: 'Ferry';
+    font-size: 38px;
+    line-height: 44px;
+
+    @media (max-width: 1100px) {
+        font-size: 30px;
+        line-height: 40px;
+    }
+
+    @media (max-width: 600px) {
+        font-size: 26px;
+        line-height: 34px;
+    }
+
+    @media (max-width: 500px) {
+        font-size: 24px;
+        line-height: 32px;
+    }
+}
+
+.image__container {
+    margin-left: 100px;
+
+    @media (max-width: 900px) {
+        display: none;
+    }
+
+    img {
+        @media (max-width: 1100px) {
+            width: 60%;
+        }
+    }
+}
+
+.mobile_image__container {
+    display: none;
+
+    @media (max-width: 900px) {
+        display: block;
+        margin: 50px 0 80px 0;
+    }
+}
+
+.login_page__right {
+    margin-right: 70px;
+
+    @media (max-width: 1290px) {
+        margin-right: 0;
+    }
+
+    @media (max-width: 900px) {
+        margin-top: 126px;
+    }
+}
