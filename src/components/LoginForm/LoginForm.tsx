@@ -1,13 +1,14 @@
-import styles from './LoginForm.module.scss';
-import googleIcon from '../../assets/icons/google.svg';
-import fbIcon from '../../assets/icons/fb.svg';
-import yaIcon from '../../assets/icons/yandex.svg';
-import lockIcon from '../../assets/images/login__lock.png';
 import { useEffect, useState } from 'react';
 import { useAppDispatch } from '../../hook';
 import { getAccessToken } from '../../store/slice/makeAuthSlice';
 import { IUserData } from '../../types/data';
 import { useNavigate } from 'react-router-dom';
+
+import styles from './LoginForm.module.scss';
+import googleIcon from '../../assets/icons/google.svg';
+import fbIcon from '../../assets/icons/fb.svg';
+import yaIcon from '../../assets/icons/yandex.svg';
+import lockIcon from '../../assets/images/login__lock.png';
 
 
 export const LoginForm: React.FC = () => {
