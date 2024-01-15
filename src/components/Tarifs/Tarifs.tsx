@@ -1,4 +1,6 @@
+import { useEffect } from 'react';
 import { TarifsCard } from './TarifsCard';
+import { useAppSelector } from '../../hook';
 
 import beginnerTarifIcon from '../../assets/icons/lamp.svg';
 import proTarifIcon from '../../assets/icons/darts.svg';
@@ -6,6 +8,7 @@ import businessTarifIcon from '../../assets/icons/laptop.svg';
 
 
 export const Tarifs: React.FC = () => {
+    const isLogged = useAppSelector((state) => state.accountInfo.isLogged);
 
     const tarifsParams = [
         {
@@ -22,7 +25,7 @@ export const Tarifs: React.FC = () => {
             tarif_option3: 'Поддержка 24/7',
             button: 'Подробнее',
             colors: {
-                card: { bg: '#FFB64F', color: '#000000' },
+                card: { bg: '#FFB64F', color: '#000000', border: 'none' },
                 button: { bg: '#5970FF', color: '#FFFFFF' },
             }
         },
@@ -40,7 +43,7 @@ export const Tarifs: React.FC = () => {
             tarif_option3: 'Рекомендации по приоритетам',
             button: 'Подробнее',
             colors: {
-                card: { bg: '#7CE3E1', color: '#000000' },
+                card: { bg: '#7CE3E1', color: '#000000', border: 'none' },
                 button: { bg: '#5970FF', color: '#FFFFFF' },
             }
         },
@@ -58,7 +61,7 @@ export const Tarifs: React.FC = () => {
             tarif_option3: 'Приоритетная поддержка',
             button: 'Подробнее',
             colors: {
-                card: { bg: '#000000', color: '#FFFFFF' },
+                card: { bg: '#000000', color: '#FFFFFF', border: 'none' },
                 button: { bg: '#5970FF', color: '#FFFFFF' },
             }
         },

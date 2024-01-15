@@ -1,50 +1,30 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { API_BASE_URL } from "../../utils/config";
-import { IUserData } from "../../types/data";
-  
-type IState = {
-    accessToken: string;
-    expire: string;
-}
+import { createSlice, PayloadAction, } from "@reduxjs/toolkit";
+import type { IAccessToken } from "../../types/data";
 
-const initialState: IState = {
+const initialState: IAccessToken = {
     accessToken: '',
-    expire: '',
+    expire: null,
 }
-
-export const getAccessToken = createAsyncThunk<IState, IUserData, { rejectValue: string }>(
-    'token/getAccessToken',
-    async function (values, { rejectWithValue }) {
-        const response = await fetch(`${API_BASE_URL}/api/v1/account/login`, {
-            method: 'POST',
-            headers: {
-                Accept: 'application/json',
-                'Content-Type': 'application/json-patch+json',
-            },
-            body: JSON.stringify(values)
-        })
-
-        const data = await response.json();
-        return data;
-    }
-);
 
 const makeAuthSlice = createSlice({
     name: 'accessToken',
     initialState,
-    reducers: {},
-    extraReducers(builder) {
-        builder
-            .addCase(getAccessToken.pending, (state) => {})
-            .addCase(getAccessToken.fulfilled, (state, action) => {
-                state.accessToken = action.payload.accessToken;
-                state.expire = action.payload.expire;
-                localStorage.setItem('token', action.payload.accessToken);
-                localStorage.setItem('expire', action.payload.expire);
-                console.log(localStorage.getItem('token'));
-                console.log(localStorage.getItem('expire'));
-            })
-    },
+    reducers: {
+        setToken(state, action: PayloadAction<IAccessToken>) {
+            const { accessToken, expire } = action.payload;
+
+            if (accessToken) {
+                state.accessToken = accessToken;
+                state.expire = expire;
+                localStorage.setItem('token', accessToken);
+            }
+        },
+        logOut() {
+            localStorage.clear();
+            return initialState
+        }
+    }
 })
 
+export const { setToken, logOut } = makeAuthSlice.actions;
 export default makeAuthSlice.reducer;

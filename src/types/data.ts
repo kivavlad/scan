@@ -12,7 +12,7 @@ export type ITarifs = {
     tarif_option3: string;
     button: string;
     colors: {
-        card: { bg: string, color: string },
+        card: { bg: string, color: string, border: string },
         button: {bg: string, color: string},
     }
 }
@@ -20,4 +20,9 @@ export type ITarifs = {
 export type IUserData = {
     login: string;
     password: string;
+}
+
+export type IAccessToken = {
+    accessToken: string;
+    expire: any;
 }
