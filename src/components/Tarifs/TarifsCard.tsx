@@ -9,7 +9,7 @@ export const TarifsCard: React.FC<ITarifs> = (props) => {
         <div className={styles.tarif_card__container}>
 
             <div className={styles.card__header} 
-                style={{ background: props.colors.card.bg, color: props.colors.card.color }}
+                style={{ background: props.colors.card.bg, color: props.colors.card.color, border: props.colors.card.border}}
             
             >
                 <div className={styles.card__header_text}>

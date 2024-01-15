@@ -1,11 +1,32 @@
+import { useEffect } from 'react';
+import { useAppDispatch, useAppSelector } from '../../hook';
 import { Link } from 'react-router-dom';
-import { useState } from 'react';
 import { HeaderBurger } from '../HeaderBurger/HeaderBurger';
-import styles from './Header.module.scss';
+import { AccountInfo } from './AccountInfo';
+import { logOut } from '../../store/slice/makeAuthSlice';
+import { TOKEN } from '../../utils/config';
+import { fetchAccountInfo } from '../../store/slice/accountInfoSlice';
+import { setIsLogged } from '../../store/slice/accountInfoSlice';
+
+import styles from './header.module.scss';
 import logo from '../../assets/icons/header-logo.svg';
 
+
 export const Header: React.FC = () => {
-    const [isLogged] = useState(false);
+    const dispatch = useAppDispatch();
+    const isLogged = useAppSelector((state) => state.accountInfo.isLogged);
+
+    useEffect(() => {
+        if (TOKEN !== null) {
+            dispatch(fetchAccountInfo(TOKEN));
+        }
+    }, [dispatch])
+
+    function handleLogOut() {
+        dispatch(setIsLogged());
+        dispatch(logOut());
+    }
+
 
     return (
         <header className={styles.header}>
@@ -26,21 +47,12 @@ export const Header: React.FC = () => {
                     {
                         isLogged ?
                             <div className={styles.isLogged__wrapper}>
-                                <div className={styles.header__tarifs_info_wrapper}>
-                                    <div className={styles.header__tarifs_info_wrapper__left}>
-                                        <p>Использовано компаний</p>
-                                        <p>Лимит по компаниям</p>
-                                    </div>
-                                    <div className={styles.header__tarifs_info_wrapper__right}>
-                                        <span className={styles.total__company}>34</span>
-                                        <span className={styles.company__limit}>100</span>
-                                    </div>
-                                </div>
+                                <AccountInfo />
 
                                 <div className={styles.header__user_info_wrapper}>
                                     <div className={styles.user__info}>
                                         <span className={styles.user__name}>Пользователь</span>
-                                        <button className={styles.logout__button}>Выйти</button>
+                                        <button onClick={handleLogOut} className={styles.logout__button}>Выйти</button>
                                     </div>
                                     <div className={styles.user__logo}></div>
                                 </div>

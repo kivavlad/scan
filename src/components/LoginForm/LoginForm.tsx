@@ -1,39 +1,26 @@
+import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { API_BASE_URL } from '../../utils/config';
+import { useAppDispatch } from '../../hook';
+import { setToken } from "../../store/slice/makeAuthSlice";
+import { fetchAccountInfo } from '../../store/slice/accountInfoSlice';
+import type { IUserData } from '../../types/data';
+import type { IAccessToken } from '../../types/data';
+
 import styles from './LoginForm.module.scss';
 import googleIcon from '../../assets/icons/google.svg';
 import fbIcon from '../../assets/icons/fb.svg';
 import yaIcon from '../../assets/icons/yandex.svg';
 import lockIcon from '../../assets/images/login__lock.png';
-import { useEffect, useState } from 'react';
-import { useAppDispatch } from '../../hook';
-import { getAccessToken } from '../../store/slice/makeAuthSlice';
-import { IUserData } from '../../types/data';
-import { useNavigate } from 'react-router-dom';
 
 
 export const LoginForm: React.FC = () => {
     const [login, setLogin] = useState('');
     const [password, setPassword] = useState('');
     const [isValue, setIsValue] = useState(false);
-    const dispatch = useAppDispatch();
+    const [error, setError] = useState(false);
     const navigate = useNavigate();
-
-    const data: IUserData = {
-        login: login.trim(),
-        password: password.trim(),
-    }
-
-
-    function handleSubmit(e: any) {
-        e.preventDefault();
-
-        if (login.trim() && password.trim()) {
-            dispatch(getAccessToken(data));
-            setLogin('');
-            setPassword('');
-            navigate("/");
-        }
-    }
-
+    const dispatch = useAppDispatch();
 
     useEffect(() => {
         if (login.trim() && password.trim()) {
@@ -42,6 +29,40 @@ export const LoginForm: React.FC = () => {
             setIsValue(false);
         }
     }, [login, password])
+
+    const userdata: IUserData = {
+        login: login.trim(),
+        password: password.trim(),
+    }
+
+    async function handleSubmit(e: React.FormEvent) {
+        e.preventDefault();
+
+        if (login.trim() && password.trim()) {
+            const response = await fetch(`${API_BASE_URL}/api/v1/account/login`, {
+                method: 'POST',
+                headers: {
+                    Accept: 'application/json',
+                    'Content-Type': 'application/json-patch+json',
+                },
+                body: JSON.stringify(userdata)
+            })
+
+            const data = await response.json() as IAccessToken;
+            
+            if (response.ok) {
+                dispatch(setToken(data));
+                dispatch(fetchAccountInfo(data.accessToken));
+                navigate("/");
+                setError(false);
+            } else {
+                setError(true);
+            }
+
+            setLogin('');
+            setPassword('');
+        }
+    }
 
 
     return (
@@ -61,13 +82,14 @@ export const LoginForm: React.FC = () => {
                         <input 
                             type='text' 
                             autoComplete='off'
+                            className={error ? styles.error__input : styles.input}
                             value={login}
                             onChange={(e) => setLogin(e.target.value)}
                         />
                     </div>
 
                     <div className={styles.error__container}>
-                        {/* <span>Введите корректные данные</span> */}
+                        {error && <span>Введите корректные данные</span>}
                     </div>
 
                     <div className={styles.form__text__container}>
@@ -75,13 +97,14 @@ export const LoginForm: React.FC = () => {
                         <input 
                             type='password' 
                             autoComplete='off'
+                            className={error ? styles.error__input : styles.input}
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
                         />
                     </div>
 
                     <div className={styles.error__container}>
-                        {/* <span>Неправильный пароль</span> */}
+                        {error && <span>Неправильный пароль</span>}
                     </div>
 
                     <button type='submit' className={isValue ? styles.button__active : styles.button}>Войти</button>
