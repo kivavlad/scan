@@ -1,46 +1,37 @@
-# Getting Started with Create React App
+## СКАН. Сервис по поиску публикаций о компании по его ИНН
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### Компания СКАН разработала новый API для поиска публикаций о компании (юридическом лице) в средствах массовой информации по его ИНН. Серверная часть приложения уже готова, ваша задача — разработать клиентскую часть.
 
-## Available Scripts
+### `Основные задачи`
 
-In the project directory, you can run:
+**1. Сверстать необходимые части интерфейса. При необходимости вместо запрашиваемых данных можно временно использовать значения-заглушки.**
 
-### `npm start`
+**2. Адаптировать свёрстанные страницы под мобильную версию.**
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+**3. Настроить роутинг и разделение прав: все страницы, кроме главной, должны быть доступны только зарегистрированному пользователю.**
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+**4. Подключить бэкенд-часть к фронтенду, настроить отправку запросов.**
 
-### `npm test`
+**5. Отладить детали для гладкого UX (пользовательского опыта): добавить лоадеры, валидацию форм и оповещения.**
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
+### `Основной сценарий работы приложения:`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+**1. Открываем приложение (без авторизации) и попадаем на главную страницу.**
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+**2. Используя форму авторизации, заходим в аккаунт (POST account/login).**
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+**3. После успешной авторизации в фоновом режиме запрашиваются данные об аккаунте пользователя и выводятся в шапку страницы (GET account/info).**
 
-### `npm run eject`
+**4. Переходим на страницу поиска и задаём параметры. Если параметры поиска введены корректно, получаем сводную информацию по количеству публикаций и рискам (POST objectsearch/histograms).**
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+**5. Параллельно, используя те же параметры, выполняем поиск непосредственно самих публикаций (POST objectsearch).**
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+**6. После успешного завершения запроса POST objectsearch получаем список ID публикаций и запрашиваем содержимое первых 10 публикаций (POST documents).**
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+**7. Если найденных публикаций больше 10, нажимаем на кнопку «Показать больше» и подгружаем следующие 10 публикаций.**
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-## Learn More
+### `Технологии, используемые при разработке:`
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+**React, TypeScript, Redux-toolkit**

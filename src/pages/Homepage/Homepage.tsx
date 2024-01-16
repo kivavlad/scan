@@ -1,3 +1,6 @@
+import { useState, useEffect } from 'react';
+import { useAppSelector } from '../../store/hook';
+import { useNavigate } from 'react-router-dom';
 import { Carousel } from '../../components/Carousel/Carousel';
 import { Tarifs } from '../../components/Tarifs/Tarifs';
 
@@ -8,6 +11,22 @@ import homeRightImg from '../../assets/images/home-right.jpg';
 
 
 export const Homepage: React.FC = () => {
+    const [error, setError] = useState(false);
+    const isLogged = useAppSelector((state) => state.accountInfo.isLogged);
+    const navigate = useNavigate();
+
+    function handleNavigate() {
+        if (isLogged) {
+            navigate("/search");
+            setError(false);
+        } else {
+            setError(true);
+        }
+    }
+
+    useEffect(() => {
+        if (error) setTimeout(() => setError(false), 3000);
+    }, [error])
 
     return (
         <div className="container">
@@ -19,12 +38,16 @@ export const Homepage: React.FC = () => {
                     <p className={styles.hero__subtitle}>Комплексный анализ публикаций, получение данных в формате PDF на электронную почту.</p>
 
                     <div className={styles.hero__button_wrapper}>
-                        <button type='button' className={styles.hero__btn}>Запросить данные</button>
+                        <button onClick={handleNavigate} type='button' className={styles.hero__btn}>Запросить данные</button>
                     </div>
                 </div>
 
                 <div className={styles.hero__image_wrapper}>
                     <img src={heroImg} alt='hero' />
+                </div>
+
+                <div className={error ? styles.error__wrapper_active : styles.error__wrapper}>
+                    <p>Для продолжения необходимо авторизоваться</p>
                 </div>
             </section>
 

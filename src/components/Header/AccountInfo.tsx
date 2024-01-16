@@ -1,4 +1,4 @@
-import { useAppSelector } from '../../hook';
+import { useAppSelector } from '../../store/hook';
 import { Loader } from '../Loader/Loader';
 import styles from './header.module.scss';
 

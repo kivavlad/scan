@@ -26,18 +26,18 @@ export const Carousel: React.FC = () => {
         const { className, onClick } = props;
         return (
             <div className={className} style={{width: '32px', height: '32px', top: '45%'}} onClick={onClick}>
-                <img src={prevArrow} alt='<--' />
+                <img src={nextArrow} alt='' />
             </div>
-        );
+        )
     }
 
     function LeftNavArrow(props: CustomArrowProps): React.JSX.Element {
         const { className, onClick } = props;
         return (
             <div className={className} style={{width: '32px', height: '32px', top: '45%'}} onClick={onClick}>
-                <img src={nextArrow} alt='-->' />
+                <img src={prevArrow} alt='' />
             </div>
-        );
+        )
     }
 
     const settings = {
@@ -50,8 +50,8 @@ export const Carousel: React.FC = () => {
             { breakpoint: 1100, settings: { slidesToShow: 2, } },
             { breakpoint: 850, settings: { slidesToShow: 1, } },
         ],
-        nextArrow: <LeftNavArrow />,
-        prevArrow: <RightNavArrow />,
+        nextArrow: <RightNavArrow />,
+        prevArrow: <LeftNavArrow />,
     };
   
     return(

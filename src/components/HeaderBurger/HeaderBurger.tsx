@@ -1,17 +1,29 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
+import { useAppSelector, useAppDispatch } from '../../store/hook';
+import { logOut } from '../../store/slice/makeAuthSlice';
+import { setIsLogged } from '../../store/slice/accountInfoSlice';
+
 import styles from './HeaderBurger.module.scss';
 import logo from '../../assets/icons/scan-white-logo.svg';
 import closeIcon from '../../assets/icons/close-icon.svg';
 
 export const HeaderBurger: React.FC = () => {
     const [activeBurger, setActiveBurger] = useState(false);
-    const [isLogged] = useState(false);
+    const isLogged = useAppSelector((state) => state.accountInfo.isLogged);
+    const data = useAppSelector((state) => state.accountInfo.eventFiltersInfo);
+    const dispatch = useAppDispatch();
     const navigate = useNavigate();
 
     function toLoginPage() {
         navigate("/login");
         setActiveBurger(false);
+    }
+
+    function handleLogOut() {
+        dispatch(setIsLogged());
+        dispatch(logOut());
+        navigate("/");
     }
 
     useEffect(() => {
@@ -22,6 +34,7 @@ export const HeaderBurger: React.FC = () => {
         }
     }, [activeBurger])
 
+    
     return(
         <>
 
@@ -60,15 +73,15 @@ export const HeaderBurger: React.FC = () => {
                                             <p>Лимит по компаниям</p>
                                         </div>
                                         <div className={styles.burger__tarifs_info_wrapper__right}>
-                                            <span className={styles.total__company}>34</span>
-                                            <span className={styles.company__limit}>100</span>
+                                            <span className={styles.total__company}>{data.usedCompanyCount}</span>
+                                            <span className={styles.company__limit}>{data.companyLimit}</span>
                                         </div>
                                     </div>
 
                                     <div className={styles.burger__user_info_wrapper}>
                                         <div className={styles.user__info}>
-                                            <span className={styles.user__name}>Пользователь</span>
-                                            <button className={styles.logout__button}>Выйти</button>
+                                            <span className={styles.user__name}>Владислав</span>
+                                            <button onClick={handleLogOut} className={styles.logout__button}>Выйти</button>
                                         </div>
                                         <div className={styles.user__logo}></div>
                                     </div>

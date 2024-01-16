@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { API_BASE_URL } from '../../utils/config';
-import { useAppDispatch } from '../../hook';
+import { useAppDispatch } from '../../store/hook';
 import { setToken } from "../../store/slice/makeAuthSlice";
 import { fetchAccountInfo } from '../../store/slice/accountInfoSlice';
 import type { IUserData } from '../../types/data';
@@ -55,12 +55,11 @@ export const LoginForm: React.FC = () => {
                 dispatch(fetchAccountInfo(data.accessToken));
                 navigate("/");
                 setError(false);
+                setLogin('');
+                setPassword('');
             } else {
                 setError(true);
             }
-
-            setLogin('');
-            setPassword('');
         }
     }
 
