@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/Scan-service-ts/static/css/main.68753424.css",
+    "main.css": "/Scan-service-ts/static/css/main.a6b7068c.css",
     "main.js": "/Scan-service-ts/static/js/main.c7a861d9.js",
     "static/media/header-logo.svg": "/Scan-service-ts/static/media/header-logo.d6731ab5578db6ce8442c37221685db3.svg",
     "static/media/hero-img.jpg": "/Scan-service-ts/static/media/hero-img.b8b2509f2b16833f89bb.jpg",
@@ -30,11 +30,11 @@
     "static/media/next_arrow.svg": "/Scan-service-ts/static/media/next_arrow.72d47462738646245861d715c3e2dc2a.svg",
     "index.html": "/Scan-service-ts/index.html",
     "static/media/close-icon.svg": "/Scan-service-ts/static/media/close-icon.bfb90a0ce9d8f2d7e2e981368630c821.svg",
-    "main.68753424.css.map": "/Scan-service-ts/static/css/main.68753424.css.map",
+    "main.a6b7068c.css.map": "/Scan-service-ts/static/css/main.a6b7068c.css.map",
     "main.c7a861d9.js.map": "/Scan-service-ts/static/js/main.c7a861d9.js.map"
   },
   "entrypoints": [
-    "static/css/main.68753424.css",
+    "static/css/main.a6b7068c.css",
     "static/js/main.c7a861d9.js"
   ]
 }
