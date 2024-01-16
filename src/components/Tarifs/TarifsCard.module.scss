@@ -58,6 +58,7 @@
     flex-direction: column;
     gap: 13px;
     min-height: 70px;
+    position: relative;
 }
 
 .price__wrapper {
@@ -79,6 +80,18 @@
         font-weight: 500;
         text-decoration: line-through;
         color: var(--gray-300);
+    }
+
+    .current__tarif_wrapper {
+        position: absolute;
+        top: -20px;
+        right: 10px;
+        font-size: 13px;
+        color: var(--white);
+        padding: 3px 12px 4px 12px;
+        border-radius: 10px;
+        text-align: center;
+        background-color: var(--blue);
     }
 
     @media (max-width: 1100px) {
@@ -154,12 +167,6 @@
         font-size: 18px;
         font-weight: 400;
         border-radius: 5px;
-        transition: .2s ease;
-
-        &:active {
-            transform: scale(0.97);
-            transition: .2s ease;
-        }
     }
 }
 

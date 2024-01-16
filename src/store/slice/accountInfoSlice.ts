@@ -1,4 +1,4 @@
-import { createSlice,  createAsyncThunk} from "@reduxjs/toolkit";
+import { createSlice,  createAsyncThunk } from "@reduxjs/toolkit";
 import { API_BASE_URL } from "../../utils/config";
 
 type IAccountInfo = {
@@ -52,6 +52,7 @@ const accountInfoSlice = createSlice({
         builder
             .addCase(fetchAccountInfo.pending, (state) => {
                 state.loading = true;
+                state.isLogged = true;
             })
             .addCase(fetchAccountInfo.rejected, (state, action) => {
                 state.errorCode = action.error;
@@ -65,6 +66,8 @@ const accountInfoSlice = createSlice({
                     state.eventFiltersInfo = eventFiltersInfo;
                     state.loading = false;
                     state.isLogged = true;
+                } else {
+                    state.isLogged = false;
                 }
             })
     },

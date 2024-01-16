@@ -6,10 +6,10 @@ import checkboxIcon from '../../assets/icons/green-check-tarif_option.svg';
 export const TarifsCard: React.FC<ITarifs> = (props) => {
 
     return (
-        <div className={styles.tarif_card__container}>
+        <div className={styles.tarif_card__container} style={{ border: props.colors.card.border }}>
 
             <div className={styles.card__header} 
-                style={{ background: props.colors.card.bg, color: props.colors.card.color, border: props.colors.card.border}}
+                style={{ background: props.colors.card.bg, color: props.colors.card.color}}
             
             >
                 <div className={styles.card__header_text}>
@@ -26,6 +26,7 @@ export const TarifsCard: React.FC<ITarifs> = (props) => {
                     <div className={styles.price__wrapper}>
                         <h2 className={styles.tarif__price}>{props.price}</h2>
                         <h3 className={styles.tarif__oldprice}>{props.old_price}</h3>
+                        {props.current && <div className={styles.current__tarif_wrapper}>Текущий тариф</div>}
                     </div>
                     {props.description_installment.length > 0 && 
                         <p className={styles.price__description}>{props.description_installment}</p>    

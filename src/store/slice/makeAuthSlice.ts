@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction, } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import type { IAccessToken } from "../../types/data";
 
 const initialState: IAccessToken = {

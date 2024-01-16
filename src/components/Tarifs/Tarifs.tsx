@@ -1,6 +1,5 @@
-import { useEffect } from 'react';
 import { TarifsCard } from './TarifsCard';
-import { useAppSelector } from '../../hook';
+import { useAppSelector } from '../../store/hook';
 
 import beginnerTarifIcon from '../../assets/icons/lamp.svg';
 import proTarifIcon from '../../assets/icons/darts.svg';
@@ -16,17 +15,17 @@ export const Tarifs: React.FC = () => {
             tarif_name: 'Beginner',
             description: 'Для небольшого исследования',
             img: beginnerTarifIcon,
-            current: false,
+            current: isLogged ? true : false,
             price: '799 ₽',
             old_price: '1 200 ₽',
             description_installment: 'или 150 ₽/мес. при рассрочке на 24 мес.',
             tarif_option1: 'Безлимитная история запросов',
             tarif_option2: 'Безопасная сделка',
             tarif_option3: 'Поддержка 24/7',
-            button: 'Подробнее',
+            button: isLogged ? 'Перейти в личный кабинет' : 'Подробнее',
             colors: {
-                card: { bg: '#FFB64F', color: '#000000', border: 'none' },
-                button: { bg: '#5970FF', color: '#FFFFFF' },
+                card: { bg: '#FFB64F', color: '#000000', border: isLogged ? '2px solid #FFB64F' : 'none' },
+                button: isLogged ? { bg: '#D2D2D2', color: 'var(--black)' } : { bg: '#5970FF', color: '#FFFFFF' },
             }
         },
         {
