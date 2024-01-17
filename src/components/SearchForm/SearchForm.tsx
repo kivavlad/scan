@@ -57,6 +57,10 @@ export const SearchForm: React.FC = () => {
                 </div>
 
 
+                <div className={styles.form__right_section}>
+                    
+                </div>
+
             </form>
         </div>
     )
