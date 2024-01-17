@@ -24,6 +24,7 @@ export const HeaderBurger: React.FC = () => {
         dispatch(setIsLogged());
         dispatch(logOut());
         navigate("/");
+        setActiveBurger(false);
     }
 
     useEffect(() => {
