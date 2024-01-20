@@ -7,7 +7,7 @@ import businessTarifIcon from '../../assets/icons/laptop.svg';
 
 
 export const Tarifs: React.FC = () => {
-    const isLogged = useAppSelector((state) => state.accountInfo.isLogged);
+    const isLogged = useAppSelector((state) => state.info.isLogged);
 
     const tarifsParams = [
         {

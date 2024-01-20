@@ -10,8 +10,8 @@ import closeIcon from '../../assets/icons/close-icon.svg';
 
 export const HeaderBurger: React.FC = () => {
     const [activeBurger, setActiveBurger] = useState(false);
-    const isLogged = useAppSelector((state) => state.accountInfo.isLogged);
-    const data = useAppSelector((state) => state.accountInfo.eventFiltersInfo);
+    const isLogged = useAppSelector((state) => state.info.isLogged);
+    const data = useAppSelector((state) => state.info.eventFiltersInfo);
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
 

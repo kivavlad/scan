@@ -12,7 +12,7 @@ import homeRightImg from '../../assets/images/home-right.jpg';
 
 export const Homepage: React.FC = () => {
     const [error, setError] = useState(false);
-    const isLogged = useAppSelector((state) => state.accountInfo.isLogged);
+    const isLogged = useAppSelector((state) => state.info.isLogged);
     const navigate = useNavigate();
 
     function handleNavigate() {
