@@ -5,7 +5,7 @@ import accountInfoSlice from "./slice/accountInfoSlice";
 const store = configureStore({
     reducer: {
         auth: makeAuthSlice,
-        accountInfo: accountInfoSlice,
+        info: accountInfoSlice,
     }
 })
 

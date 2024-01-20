@@ -1,12 +1,105 @@
 import { useState } from 'react';
 import { TONALITY_PARAMS } from '../../utils/config';
+import { currentInnNumber, validateStartDate, validateDateRange } from '../../utils/validate';
+
 import styles from './SearchForm.module.scss';
+import checkIcon from '../../assets/icons/checkbox__container.svg';
+import checkActive from '../../assets/icons/checkbox-active.svg';
+
 
 export const SearchForm: React.FC = () => {
     const [inn, setInn] = useState('');
+    const [tonality, setTonality] = useState(TONALITY_PARAMS[0].value);
+    const [limit, setLimit] = useState('');
+    const [startDate, setStartDate] = useState('');
+    const [endDate, setEndDate] = useState('');
+
+    const [errorInn, setErrorInn] = useState(false);
+    const [errorLimit, setErrorLimit] = useState(false);
+    const [errorDate, setErrortDate] = useState(false);
+
+    const [errorInnMessage, setErrorInnMessage] = useState('');
+    const [errorLimitMessage, setErrorLimitMessage] = useState('');
+    const [errorDateMessage, setErrorDateMessage] = useState('');
+
+    let [maxFullness, setMaxFullness] = useState(true);
+    let [inBusinessNews, setInBusinessNews] = useState(true);
+    let [onlyMainRole, setOnlyMainRole] = useState(true);
+    let [onlyWithRiskFactors, setOnlyWithRiskFactors] = useState(false);
+    let [includeTechNews, setIncludeTechNews] = useState(false);
+    let [includeAnnouncements, setIncludeAnnouncements] = useState(true);
+    let [includeDigests, setIncludeDigests] = useState(false);
+
+    const errorsText = [
+        { message: 'Обязательное поле' },
+        { message: 'Введите корректные данные' },
+    ]
+    
+    function validateInputs(): boolean {
+        let isCurrentInn = false;
+        let isCurrentLimit = false;
+        let isCurrentDate = false;
+        let isTotalCurrent = false;
+
+        // verification inn
+        if (!inn.trim()) {
+            isCurrentInn = false;
+            setErrorInn(true);
+            setErrorInnMessage(errorsText[0].message);
+        } else if (!currentInnNumber(inn)) {
+            isCurrentInn = false;
+            setErrorInn(true);
+            setErrorInnMessage(errorsText[1].message);
+        } else {
+            isCurrentInn = true;
+            setErrorInn(false);
+            setErrorInnMessage('');
+        }
+
+        // verification limit
+        if (!limit.trim()) {
+            isCurrentLimit = false;
+            setErrorLimit(true);
+            setErrorLimitMessage(errorsText[0].message);
+        } else if (+limit < 1 || +limit > 100) {
+            isCurrentLimit = false;
+            setErrorLimit(true);
+            setErrorLimitMessage(errorsText[1].message);
+        } else {
+            isCurrentLimit = true;
+            setErrorLimit(false);
+            setErrorLimitMessage('');
+        }
+
+        // verification date
+        if (!startDate.length || !endDate.length) {
+            isCurrentDate = false;
+            setErrortDate(true);
+            setErrorDateMessage(errorsText[0].message);
+        } else if (!validateStartDate(startDate)) {
+            isCurrentDate = false;
+            setErrortDate(true);
+            setErrorDateMessage(errorsText[1].message);
+        } else if (!validateDateRange(startDate, endDate)) {
+            isCurrentDate = false;
+            setErrortDate(true);
+            setErrorDateMessage(errorsText[1].message);
+        } else {
+            isCurrentDate = true;
+            setErrortDate(false);
+            setErrorDateMessage('');
+        }
+
+        if (isCurrentInn && isCurrentLimit && isCurrentDate) {
+            isTotalCurrent = true;
+        }
+
+        return isTotalCurrent;
+    }
 
     function handleSubmit(e: React.FormEvent) {
         e.preventDefault();
+        validateInputs();
     }
 
     return (
@@ -18,16 +111,22 @@ export const SearchForm: React.FC = () => {
                         <label>ИНН компании *</label>
                         <input 
                             type='number' 
+                            className={errorInn ? styles.error__input : styles.input}
                             autoComplete='off'
                             placeholder='10 цифр'
                             value={inn}
                             onChange={(e) => setInn(e.target.value)}
                         />
+                        {errorInn && <div className={styles.input_error__wrapper}><span>{errorInnMessage}</span></div>}
                     </div>
 
                     <div className={styles.input__container}>
                         <label>Тональность</label>
-                        <select>
+                        <select 
+                            className={styles.select} 
+                            value={tonality} 
+                            onChange={(e) => setTonality(e.target.value)}
+                        >
                             {TONALITY_PARAMS.map((item, index) => <option key={index} value={item.value}>{item.name}</option>)}
                         </select>
                     </div>
@@ -36,9 +135,13 @@ export const SearchForm: React.FC = () => {
                         <label>Количество документов в выдаче *</label>
                         <input 
                             type='number' 
+                            className={errorLimit ? styles.error__input : styles.input}
                             autoComplete='off'
-                            placeholder='От 1 до 1000'
+                            placeholder='От 1 до 100'
+                            value={limit}
+                            onChange={(e) => setLimit(e.target.value)}
                         />
+                        {errorLimit && <div className={styles.input_error__wrapper}><span>{errorLimitMessage}</span></div>}
                     </div>
 
                     <div className={styles.date__container}>
@@ -47,18 +150,41 @@ export const SearchForm: React.FC = () => {
                             <input
                                 type='date'
                                 placeholder='Дата начала'
+                                className={errorDate ? styles.error_date_input : styles.date_input}
+                                value={startDate}
+                                onChange={(e) => setStartDate(e.target.value)}
                             />
                             <input
                                 type='date'
                                 placeholder='Дата конца'
+                                className={errorDate ? styles.error_date_input : styles.date_input}
+                                value={endDate}
+                                onChange={(e) => setEndDate(e.target.value)}
                             />
                         </div>
+                        {errorDate && <div className={styles.date_error__wrapper}><span>{errorDateMessage}</span></div>}
                     </div>
                 </div>
 
 
                 <div className={styles.form__right_section}>
-                    
+                    <div className={styles.checkboxs__list}>
+                        <div className={styles.checkbox__wrappper}><img src={maxFullness ? checkActive : checkIcon} onClick={() => setMaxFullness(maxFullness = !maxFullness)} alt='' /><span className={!maxFullness ? styles.un_search__params_span : styles.search__params_span}>Признак максимальной полноты</span></div>
+                        <div className={styles.checkbox__wrappper}><img src={inBusinessNews ? checkActive : checkIcon} onClick={() => setInBusinessNews(inBusinessNews = !inBusinessNews)} alt='' /><span className={!inBusinessNews ? styles.un_search__params_span : styles.search__params_span}>Упоминания в бизнес-контексте</span></div>
+                        <div className={styles.checkbox__wrappper}><img src={onlyMainRole ? checkActive : checkIcon} onClick={() => setOnlyMainRole(onlyMainRole = !onlyMainRole)} alt='' /><span className={!onlyMainRole ? styles.un_search__params_span : styles.search__params_span}>Главная роль в публикации</span></div>
+                        <div className={styles.checkbox__wrappper}><img src={onlyWithRiskFactors ? checkActive : checkIcon} onClick={() => setOnlyWithRiskFactors(onlyWithRiskFactors = !onlyWithRiskFactors)} alt='' /><span className={!onlyWithRiskFactors ? styles.un_search__params_span : styles.search__params_span}>Публикации только с риск-факторами</span></div>
+                        <div className={styles.checkbox__wrappper}><img src={includeTechNews ? checkActive : checkIcon} onClick={() => setIncludeTechNews(includeTechNews = !includeTechNews)} alt='' /><span className={!includeTechNews ? styles.un_search__params_span : styles.search__params_span}>Включать технические новости рынков</span></div>
+                        <div className={styles.checkbox__wrappper}><img src={includeAnnouncements ? checkActive : checkIcon} onClick={() => setIncludeAnnouncements(includeAnnouncements = !includeAnnouncements)} alt='' /><span className={!includeAnnouncements ? styles.un_search__params_span : styles.search__params_span}>Включать анонсы и календари</span></div>
+                        <div className={styles.checkbox__wrappper}><img src={includeDigests ? checkActive : checkIcon} onClick={() => setIncludeDigests(includeDigests = !includeDigests)} alt='' /><span className={!includeDigests ? styles.un_search__params_span : styles.search__params_span}>Включать сводки новостей</span></div>
+                    </div>
+
+                    <div className={styles.button__down_container}>
+                        <div className={styles.button__wrapper}>
+                            <button className={styles.button} type='submit'>Поиск</button>
+                            <span>* Обязательные к заполнению поля</span>
+                        </div>
+                    </div>
+
                 </div>
 
             </form>

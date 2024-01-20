@@ -12,7 +12,7 @@ import logo from '../../assets/icons/header-logo.svg';
 export const Header: React.FC = () => {
     const navigate = useNavigate();
     const dispatch = useAppDispatch();
-    const isLogged = useAppSelector((state) => state.accountInfo.isLogged);
+    const isLogged = useAppSelector((state) => state.info.isLogged);
 
     function handleLogOut() {
         dispatch(setIsLogged());

@@ -3,8 +3,8 @@ import { Loader } from '../Loader/Loader';
 import styles from './header.module.scss';
 
 export const AccountInfo: React.FC = () => {
-    const loading = useAppSelector((state) => state.accountInfo.loading);
-    const data = useAppSelector((state) => state.accountInfo.eventFiltersInfo);
+    const loading = useAppSelector((state) => state.info.loading);
+    const data = useAppSelector((state) => state.info.eventFiltersInfo);
 
     return (
         <div className={styles.header__tarifs_info_wrapper}>
