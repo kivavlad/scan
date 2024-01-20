@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/Scan-service-ts/static/css/main.e6219156.css",
-    "main.js": "/Scan-service-ts/static/js/main.83962a86.js",
+    "main.css": "/Scan-service-ts/static/css/main.d184716b.css",
+    "main.js": "/Scan-service-ts/static/js/main.de3c06a4.js",
     "static/media/header-logo.svg": "/Scan-service-ts/static/media/header-logo.d6731ab5578db6ce8442c37221685db3.svg",
     "static/media/hero-img.jpg": "/Scan-service-ts/static/media/hero-img.b8b2509f2b16833f89bb.jpg",
     "static/media/ferry_black.otf": "/Scan-service-ts/static/media/ferry_black.8d1c2bfebe1bfba898ae.otf",
@@ -14,6 +14,7 @@
     "static/media/darts.svg": "/Scan-service-ts/static/media/darts.8379c83e1658c1f7c78baf7ce7055e11.svg",
     "static/media/folders-img.svg": "/Scan-service-ts/static/media/folders-img.14b29362c98c4d211fe74a0ef708bbe2.svg",
     "static/media/fb.svg": "/Scan-service-ts/static/media/fb.91cdbc7ab7d86d60ca47f0d53315e33b.svg",
+    "static/media/checkbox-active.svg": "/Scan-service-ts/static/media/checkbox-active.9b58f50f08cae8f9c410462810db70b7.svg",
     "static/media/green-check-tarif_option.svg": "/Scan-service-ts/static/media/green-check-tarif_option.9525693ef0b5722302c7ce9ff0002dfb.svg",
     "static/media/lock.svg": "/Scan-service-ts/static/media/lock.cd26f67bdf714f84aa74994f73883f7f.svg",
     "static/media/google.svg": "/Scan-service-ts/static/media/google.0a5f1fcdd99832178b5ab216d7f80cc3.svg",
@@ -30,11 +31,12 @@
     "static/media/next_arrow.svg": "/Scan-service-ts/static/media/next_arrow.72d47462738646245861d715c3e2dc2a.svg",
     "index.html": "/Scan-service-ts/index.html",
     "static/media/close-icon.svg": "/Scan-service-ts/static/media/close-icon.bfb90a0ce9d8f2d7e2e981368630c821.svg",
-    "main.e6219156.css.map": "/Scan-service-ts/static/css/main.e6219156.css.map",
-    "main.83962a86.js.map": "/Scan-service-ts/static/js/main.83962a86.js.map"
+    "static/media/checkbox__container.svg": "/Scan-service-ts/static/media/checkbox__container.8a5f042aff79779abee8c52cb49dc43f.svg",
+    "main.d184716b.css.map": "/Scan-service-ts/static/css/main.d184716b.css.map",
+    "main.de3c06a4.js.map": "/Scan-service-ts/static/js/main.de3c06a4.js.map"
   },
   "entrypoints": [
-    "static/css/main.e6219156.css",
-    "static/js/main.83962a86.js"
+    "static/css/main.d184716b.css",
+    "static/js/main.de3c06a4.js"
   ]
 }
