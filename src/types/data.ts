@@ -26,3 +26,18 @@ export type IAccessToken = {
     accessToken: string;
     expire: any;
 }
+
+export type ISearchParams = {
+    inn: string;
+    tonality: any;
+    limit: string;
+    startDate: string;
+    endDate: string;
+    maxFullness: boolean;
+    inBusinessNews: boolean;
+    onlyMainRole: boolean;
+    onlyWithRiskFactors: boolean;
+    includeTechNews: boolean;
+    includeAnnouncements: boolean;
+    includeDigests: boolean;
+}

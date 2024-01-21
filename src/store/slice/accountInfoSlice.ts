@@ -1,7 +1,7 @@
 import { createSlice,  createAsyncThunk } from "@reduxjs/toolkit";
 import { API_BASE_URL } from "../../utils/config";
 
-type IAccountInfo = {
+type IState = {
     eventFiltersInfo: {
         usedCompanyCount: number;
         companyLimit: number;
@@ -11,7 +11,7 @@ type IAccountInfo = {
     errorCode: any;
 }
 
-const initialState: IAccountInfo = {
+const initialState: IState = {
     eventFiltersInfo: {
         usedCompanyCount: 0,
         companyLimit: 0,
@@ -21,7 +21,7 @@ const initialState: IAccountInfo = {
     errorCode: null,
 }
 
-export const fetchAccountInfo = createAsyncThunk<IAccountInfo, string>(
+export const fetchAccountInfo = createAsyncThunk<IState, string>(
     'accountInfo/fetchAccountInfo',
     async function (token) {
         const response = await fetch(`${API_BASE_URL}/api/v1/account/info`, {

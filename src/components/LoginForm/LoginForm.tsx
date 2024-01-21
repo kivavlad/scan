@@ -39,8 +39,8 @@ export const LoginForm: React.FC = () => {
             const response = await fetch(`${API_BASE_URL}/api/v1/account/login`, {
                 method: 'POST',
                 headers: {
-                    Accept: 'application/json',
                     'Content-Type': 'application/json-patch+json',
+                    Accept: 'application/json',
                 },
                 body: JSON.stringify(userdata)
             })
