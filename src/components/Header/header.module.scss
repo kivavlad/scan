@@ -114,6 +114,10 @@
     position: absolute;
     top: 20px;
     right: 20%;
+
+    @media (max-width: 1100px) {
+        right: 15%;
+    }
 }
 
 .header__tarifs_info_wrapper__left {

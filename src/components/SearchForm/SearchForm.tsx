@@ -1,6 +1,10 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useAppDispatch } from '../../store/hook';
+import { fetchHistograms, resetHistorgams } from '../../store/slice/histogramsSlice';
 import { TONALITY_PARAMS } from '../../utils/config';
-import { currentInnNumber, validateStartDate, validateDateRange } from '../../utils/validate';
+import { currentInnNumber, comparisonWithStartDate, validateDateRange, } from '../../utils/validate';
+import type { ISearchParams } from '../../types/data';
 
 import styles from './SearchForm.module.scss';
 import checkIcon from '../../assets/icons/checkbox__container.svg';
@@ -8,6 +12,9 @@ import checkActive from '../../assets/icons/checkbox-active.svg';
 
 
 export const SearchForm: React.FC = () => {
+    const dispatch = useAppDispatch();
+    const navigate = useNavigate();
+
     const [inn, setInn] = useState('');
     const [tonality, setTonality] = useState(TONALITY_PARAMS[0].value);
     const [limit, setLimit] = useState('');
@@ -76,7 +83,7 @@ export const SearchForm: React.FC = () => {
             isCurrentDate = false;
             setErrortDate(true);
             setErrorDateMessage(errorsText[0].message);
-        } else if (!validateStartDate(startDate)) {
+        } else if (!comparisonWithStartDate(startDate) || !comparisonWithStartDate(endDate)) {
             isCurrentDate = false;
             setErrortDate(true);
             setErrorDateMessage(errorsText[1].message);
@@ -97,10 +104,38 @@ export const SearchForm: React.FC = () => {
         return isTotalCurrent;
     }
 
+    const data: ISearchParams = {
+        inn: inn,
+        tonality: tonality,
+        limit: limit,
+        startDate:  startDate,
+        endDate: endDate,
+        maxFullness: maxFullness,
+        inBusinessNews: inBusinessNews,
+        onlyMainRole: onlyMainRole,
+        onlyWithRiskFactors: onlyWithRiskFactors,
+        includeTechNews: includeTechNews,
+        includeAnnouncements: includeAnnouncements,
+        includeDigests: includeDigests
+    }
+
     function handleSubmit(e: React.FormEvent) {
         e.preventDefault();
         validateInputs();
+
+        if (validateInputs()) {
+            dispatch(resetHistorgams());
+            dispatch(fetchHistograms(data));
+            navigate("/");
+        }
     }
+
+    useEffect(() => {
+        if (inn.trim()) setErrorInn(false);
+        if (limit.trim()) setErrorLimit(false);
+        if (startDate.length && endDate.length) setErrortDate(false);
+    }, [inn, limit, startDate, endDate])
+
 
     return (
         <div className={styles.form__wrapper}>
@@ -108,7 +143,7 @@ export const SearchForm: React.FC = () => {
 
                 <div className={styles.form__left_section}>
                     <div className={styles.input__container}>
-                        <label>ИНН компании *</label>
+                        <label>ИНН компании *  7710137066</label>
                         <input 
                             type='number' 
                             className={errorInn ? styles.error__input : styles.input}
@@ -180,7 +215,7 @@ export const SearchForm: React.FC = () => {
 
                     <div className={styles.button__down_container}>
                         <div className={styles.button__wrapper}>
-                            <button className={styles.button} type='submit'>Поиск</button>
+                            <button type='submit' className={styles.button}>Поиск</button>
                             <span>* Обязательные к заполнению поля</span>
                         </div>
                     </div>

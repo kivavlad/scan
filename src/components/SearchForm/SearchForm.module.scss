@@ -1,14 +1,43 @@
 .form__wrapper {
-    width: 800px;
+    min-width: 800px;
     min-height: 500px;
     border-radius: 10px;
     padding: 28px 40px 30px 40px;
     box-shadow: 0px 0px 20px 0px #00000033;
+
+    @media (max-width: 1250px) {
+        min-width: 760px;
+        padding: 28px 30px 30px 30px;
+    }
+
+    @media (max-width: 1100px) {
+        min-width: 660px;
+        padding: 28px 15px 30px 15px;
+    }
+
+    @media (max-width: 900px) {
+        padding: 28px 30px 30px 30px;
+    }
+
+    @media (max-width: 700px) {
+        min-width: auto;
+        padding: 28px 10px 30px 10px;
+    }
 }
 
 .form {
     display: flex;
     gap: 10px;
+
+    @media (max-width: 1100px) {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    @media (max-width: 700px) {
+        display: flex;
+        flex-direction: column;
+    }
 }
 
 .form__left_section {
@@ -25,6 +54,14 @@
 
     label {
         font-size: 16px;
+
+        @media (max-width: 1100px) {
+            font-size: 14px;
+        }
+
+        @media (max-width: 700px) {
+            font-size: 16px;
+        }
     }
 }
 
@@ -36,6 +73,10 @@
     text-align: center;
     font-size: 14px;
     box-shadow: 0px 0px 20px 0px #0000000D;
+
+    @media (max-width: 700px) {
+        width: 100%;
+    }
 }
 
 .error__input {
@@ -46,6 +87,10 @@
     text-align: center;
     font-size: 14px;
     box-shadow: 0px 0px 20px 0px #FF595933;
+
+    @media (max-width: 700px) {
+        width: 100%;
+    }
 }
 
 .select {
@@ -67,6 +112,10 @@
     -moz-appearance: none;
     -ms-appearance: none;
 
+    @media (max-width: 700px) {
+        width: 100%;
+    }
+
     option {
         font-size: 14px;
     }
@@ -79,6 +128,10 @@
     width: 220px;
     position: absolute;
     bottom: -18px;
+
+    @media (max-width: 700px) {
+        width: 100%;
+    }
 
     span {
         font-size: 12px;
@@ -95,12 +148,26 @@
 
     label {
         font-size: 16px;
+
+        @media (max-width: 1100px) {
+            font-size: 14px;
+        }
+
+        @media (max-width: 700px) {
+            font-size: 16px;
+        }
     }
 
     .date_inputs {
         display: flex;
         align-items: center;
         gap: 16px;
+
+        @media (max-width: 1100px) {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
     }
 }
 
@@ -112,6 +179,14 @@
     text-align: center;
     font-size: 14px;
     box-shadow: 0px 0px 20px 0px #0000000D;
+
+    @media (max-width: 1100px) {
+        width: 220px;
+    }
+
+    @media (max-width: 700px) {
+        width: 100%;
+    }
 }
 
 .error_date_input {
@@ -122,6 +197,14 @@
     text-align: center;
     font-size: 14px;
     box-shadow: 0px 0px 20px 0px #FF595933;
+
+    @media (max-width: 1100px) {
+        width: 220px;
+    }
+
+    @media (max-width: 700px) {
+        width: 100%;
+    }
 }
 
 .date_error__wrapper {
@@ -138,10 +221,20 @@
     }
 }
 
+.form__right_section {
+    @media (max-width: 700px) {
+        width: 100%;
+    }
+}
+
 .checkboxs__list {
     display: flex;
     flex-direction: column;
     gap: 12px;
+
+    @media (max-width: 700px) {
+        display: none;
+    }
 }
 
 .checkbox__wrappper {
@@ -158,17 +251,29 @@
 
 .un_search__params_span {
     font-size: 18px;
-    opacity: .4;   
+    opacity: .4;
+
+    @media (max-width: 1250px) {
+        font-size: 16px;
+    }
 }
 
 .search__params_span {
     font-size: 18px;
+
+    @media (max-width: 1250px) {
+        font-size: 16px;
+    }
 }
 
 .button__down_container {
     display: flex;
     justify-content: flex-end;
     margin-top: 134px;
+
+    @media (max-width: 700px) {
+        margin-top: 40px;
+    }
 }
 
 .button__wrapper {
@@ -176,10 +281,16 @@
     flex-direction: column;
     gap: 8px;
 
+    @media (max-width: 700px) {
+        width: 100%;
+    }
+
     span {
         font-size: 14px;
         color: #949494;
     }
+
+    
 }
 
 .button {
@@ -192,6 +303,14 @@
     font-weight: 500;
     color: var(--white);
     transition: .2s ease;
+
+    @media (max-width: 1100px) {
+        width: 250px;
+    }
+
+    @media (max-width: 700px) {
+        width: 100%;
+    }
 
     &:active {
         transform: scale(0.95);

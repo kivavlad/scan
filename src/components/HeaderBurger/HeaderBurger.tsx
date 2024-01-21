@@ -53,9 +53,9 @@ export const HeaderBurger: React.FC = () => {
                         <div className={styles.burger__logo}>
                             <img src={logo} alt='' />
                         </div>
-                        <div onClick={() => setActiveBurger(false)} className={styles.burger__close}>
+                        <button onClick={() => setActiveBurger(false)} className={styles.burger__close}>
                             <img src={closeIcon} alt='' />
-                        </div>
+                        </button>
                     </div>
 
                     <div className={styles.burger__menu_main}>

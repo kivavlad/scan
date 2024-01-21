@@ -18,7 +18,7 @@ export const currentInnNumber = (value: string): boolean => {
     }
 };
 
-export const validateStartDate = (dateStr: string): boolean => {
+export const comparisonWithStartDate = (dateStr: string): boolean => {
     const dateObj = new Date(dateStr);
     const nowDate = new Date();
     
