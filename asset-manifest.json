@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/Scan-service-ts/static/css/main.d184716b.css",
-    "main.js": "/Scan-service-ts/static/js/main.de3c06a4.js",
+    "main.css": "/Scan-service-ts/static/css/main.dba56b67.css",
+    "main.js": "/Scan-service-ts/static/js/main.0e4edc72.js",
     "static/media/header-logo.svg": "/Scan-service-ts/static/media/header-logo.d6731ab5578db6ce8442c37221685db3.svg",
     "static/media/hero-img.jpg": "/Scan-service-ts/static/media/hero-img.b8b2509f2b16833f89bb.jpg",
     "static/media/ferry_black.otf": "/Scan-service-ts/static/media/ferry_black.8d1c2bfebe1bfba898ae.otf",
@@ -32,11 +32,11 @@
     "index.html": "/Scan-service-ts/index.html",
     "static/media/close-icon.svg": "/Scan-service-ts/static/media/close-icon.bfb90a0ce9d8f2d7e2e981368630c821.svg",
     "static/media/checkbox__container.svg": "/Scan-service-ts/static/media/checkbox__container.8a5f042aff79779abee8c52cb49dc43f.svg",
-    "main.d184716b.css.map": "/Scan-service-ts/static/css/main.d184716b.css.map",
-    "main.de3c06a4.js.map": "/Scan-service-ts/static/js/main.de3c06a4.js.map"
+    "main.dba56b67.css.map": "/Scan-service-ts/static/css/main.dba56b67.css.map",
+    "main.0e4edc72.js.map": "/Scan-service-ts/static/js/main.0e4edc72.js.map"
   },
   "entrypoints": [
-    "static/css/main.d184716b.css",
-    "static/js/main.de3c06a4.js"
+    "static/css/main.dba56b67.css",
+    "static/js/main.0e4edc72.js"
   ]
 }
