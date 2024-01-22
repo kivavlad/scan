@@ -1,7 +1,6 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { useAppSelector, useAppDispatch } from '../../store/hook';
-import { logOut } from '../../store/slice/makeAuthSlice';
 import { setIsLogged } from '../../store/slice/accountInfoSlice';
 
 import styles from './HeaderBurger.module.scss';
@@ -22,7 +21,7 @@ export const HeaderBurger: React.FC = () => {
 
     function handleLogOut() {
         dispatch(setIsLogged());
-        dispatch(logOut());
+        localStorage.clear();
         navigate("/");
         setActiveBurger(false);
     }

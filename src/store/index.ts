@@ -1,13 +1,13 @@
 import { configureStore } from "@reduxjs/toolkit";
-import makeAuthSlice from "./slice/makeAuthSlice";
 import accountInfoSlice from "./slice/accountInfoSlice";
 import histogramsSlice from "./slice/histogramsSlice";
+import documentsSlice from "./slice/documentsSlice";
 
 const store = configureStore({
     reducer: {
-        auth: makeAuthSlice,
         info: accountInfoSlice,
         histograms: histogramsSlice,
+        docs: documentsSlice
     }
 })
 

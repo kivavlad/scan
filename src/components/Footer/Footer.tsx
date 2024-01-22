@@ -1,4 +1,4 @@
-import styles from './Footer.module.scss';
+import styles from './footer.module.scss';
 import logo from '../../assets/icons/scan-white-logo.svg';
 
 export const Footer = () => {
