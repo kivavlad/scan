@@ -1,7 +1,10 @@
+import styles from './result.module.scss';
 
 export const Resultpage: React.FC = () => {
 
-    return <>
-    
-    </>
+    return (
+        <div className='container'>
+            
+        </div>
+    )
 }

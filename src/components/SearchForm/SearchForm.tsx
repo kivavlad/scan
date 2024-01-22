@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useAppDispatch } from '../../store/hook';
-import { fetchHistograms, resetHistorgams } from '../../store/slice/histogramsSlice';
+import { useAppDispatch, useAppSelector } from '../../store/hook';
+import { fetchObjectSearch } from '../../store/api';
+import { fetchHistograms ,resetHistorgams } from '../../store/slice/histogramsSlice';
+import { fetchDocuments, resetDocuments } from '../../store/slice/documentsSlice';
 import { TONALITY_PARAMS } from '../../utils/config';
 import { currentInnNumber, comparisonWithStartDate, validateDateRange, } from '../../utils/validate';
 import type { ISearchParams } from '../../types/data';
@@ -104,6 +106,12 @@ export const SearchForm: React.FC = () => {
         return isTotalCurrent;
     }
 
+    useEffect(() => {
+        if (inn.trim()) setErrorInn(false);
+        if (limit.trim()) setErrorLimit(false);
+        if (startDate.length && endDate.length) setErrortDate(false);
+    }, [inn, limit, startDate, endDate])
+
     const data: ISearchParams = {
         inn: inn,
         tonality: tonality,
@@ -124,17 +132,22 @@ export const SearchForm: React.FC = () => {
         validateInputs();
 
         if (validateInputs()) {
+            // reset
             dispatch(resetHistorgams());
+            dispatch(resetDocuments());
+            
+            // get
             dispatch(fetchHistograms(data));
-            navigate("/");
+            fetchObjectSearch(data)
+            .then((response) => {
+                console.log(response.items);
+                // navigate("/results");
+            })
+            .catch((error) => {
+                console.error(error);
+            })
         }
     }
-
-    useEffect(() => {
-        if (inn.trim()) setErrorInn(false);
-        if (limit.trim()) setErrorLimit(false);
-        if (startDate.length && endDate.length) setErrortDate(false);
-    }, [inn, limit, startDate, endDate])
 
 
     return (

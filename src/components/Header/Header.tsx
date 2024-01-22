@@ -1,6 +1,8 @@
+import { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../../store/hook';
 import { Link, useNavigate } from 'react-router-dom';
-import { logOut } from '../../store/slice/makeAuthSlice';
+import { fetchAccountInfo } from '../../store/slice/accountInfoSlice';
+import { TOKEN } from '../../utils/config';
 import { setIsLogged } from '../../store/slice/accountInfoSlice';
 import { HeaderBurger } from '../HeaderBurger/HeaderBurger';
 import { AccountInfo } from './AccountInfo';
@@ -16,9 +18,13 @@ export const Header: React.FC = () => {
 
     function handleLogOut() {
         dispatch(setIsLogged());
-        dispatch(logOut());
+        localStorage.clear();
         navigate("/");
     }
+
+    useEffect(() => {
+        if (TOKEN !== null) dispatch(fetchAccountInfo(TOKEN));
+    }, [dispatch])
 
     return (
         <header className={styles.header}>

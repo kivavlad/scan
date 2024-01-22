@@ -1,18 +1,16 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { API_BASE_URL } from '../../utils/config';
 import { useAppDispatch } from '../../store/hook';
-import { setToken } from "../../store/slice/makeAuthSlice";
+import { fetchAuthorization } from '../../store/api';
 import { fetchAccountInfo } from '../../store/slice/accountInfoSlice';
 import { ButtonLoader } from '../Loader/ButtonLoader';
 import type { IUserData } from '../../types/data';
-import type { IAccessToken } from '../../types/data';
 
 import styles from './LoginForm.module.scss';
 import googleIcon from '../../assets/icons/google.svg';
 import fbIcon from '../../assets/icons/fb.svg';
 import yaIcon from '../../assets/icons/yandex.svg';
-import lockIcon from '../../assets/images/login__lock.png';
+import lockIcon from '../../assets/images/login__lock-img.svg';
 
 
 export const LoginForm: React.FC = () => {
@@ -30,35 +28,26 @@ export const LoginForm: React.FC = () => {
         password: password.trim(),
     }
 
-    async function handleSubmit(e: React.FormEvent) {
+    function handleSubmit(e: React.FormEvent) {
         e.preventDefault();
 
         if (login.trim() && password.trim()) {
             setLoading(true);
-
-            const response = await fetch(`${API_BASE_URL}/api/v1/account/login`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json-patch+json',
-                    Accept: 'application/json',
-                },
-                body: JSON.stringify(userdata)
-            })
-
-            const data = await response.json() as IAccessToken;
-            
-            if (response.ok) {
-                dispatch(setToken(data));
-                dispatch(fetchAccountInfo(data.accessToken));
+            fetchAuthorization(userdata)
+            .then((response) => {
+                localStorage.setItem('token', response.accessToken);
+                dispatch(fetchAccountInfo(response.accessToken));
                 setErrorLogin(false);
                 setErrorPassword(false);
                 setLoading(false);
                 navigate("/");
-            } else {
+            })
+            .catch((error) => {
+                console.error(error);
                 setErrorLogin(true);
                 setErrorPassword(true);
                 setLoading(false);
-            }
+            })
 
             setLogin('');
             setPassword('');

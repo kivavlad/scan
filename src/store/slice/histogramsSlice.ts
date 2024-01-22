@@ -1,5 +1,5 @@
 import {createSlice, createAsyncThunk} from "@reduxjs/toolkit";
-import { API_BASE_URL, URL_SEARCH_PARAMS, TOKEN } from "../../utils/config";
+import { API_BASE_URL, URL_SEARCH_PARAMS } from "../../utils/config";
 import type { ISearchParams } from "../../types/data";
 
 type IState = {
@@ -22,7 +22,7 @@ export const fetchHistograms = createAsyncThunk<IState, ISearchParams>(
             headers: {
                 'Content-Type': 'application/json-patch+json',
                 Accept: 'application/json',
-                Authorization: `Bearer ${TOKEN}`
+                Authorization: `Bearer ${localStorage.getItem('token')}`
             },
             body: JSON.stringify(URL_SEARCH_PARAMS(data))
         })
