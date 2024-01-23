@@ -4,8 +4,10 @@ import { useAppDispatch, useAppSelector } from '../../store/hook';
 import { fetchObjectSearch } from '../../store/api';
 import { fetchHistograms ,resetHistorgams } from '../../store/slice/histogramsSlice';
 import { fetchDocuments, resetDocuments } from '../../store/slice/documentsSlice';
+import { checkAccessToken, logOut } from '../../store/slice/authorizationSlice';
 import { TONALITY_PARAMS } from '../../utils/config';
 import { currentInnNumber, comparisonWithStartDate, validateDateRange, } from '../../utils/validate';
+import { ButtonLoader } from '../Loader/ButtonLoader';
 import type { ISearchParams } from '../../types/data';
 
 import styles from './SearchForm.module.scss';
@@ -16,7 +18,9 @@ import checkActive from '../../assets/icons/checkbox-active.svg';
 export const SearchForm: React.FC = () => {
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
+    const isLogged = useAppSelector((state) => state.auth.isLogged);
 
+    const [loading, setLoading] = useState(false);
     const [inn, setInn] = useState('');
     const [tonality, setTonality] = useState(TONALITY_PARAMS[0].value);
     const [limit, setLimit] = useState('');
@@ -106,6 +110,13 @@ export const SearchForm: React.FC = () => {
         return isTotalCurrent;
     }
 
+    function resetInputs() {
+        setInn('');
+        setLimit('');
+        setStartDate('');
+        setEndDate('');
+    }
+
     useEffect(() => {
         if (inn.trim()) setErrorInn(false);
         if (limit.trim()) setErrorLimit(false);
@@ -113,38 +124,39 @@ export const SearchForm: React.FC = () => {
     }, [inn, limit, startDate, endDate])
 
     const data: ISearchParams = {
-        inn: inn,
-        tonality: tonality,
-        limit: limit,
-        startDate:  startDate,
-        endDate: endDate,
-        maxFullness: maxFullness,
-        inBusinessNews: inBusinessNews,
-        onlyMainRole: onlyMainRole,
-        onlyWithRiskFactors: onlyWithRiskFactors,
-        includeTechNews: includeTechNews,
-        includeAnnouncements: includeAnnouncements,
-        includeDigests: includeDigests
+        inn, tonality, limit, startDate, endDate,
+        maxFullness, inBusinessNews, onlyMainRole, onlyWithRiskFactors, 
+        includeTechNews, includeAnnouncements, includeDigests
     }
 
     function handleSubmit(e: React.FormEvent) {
         e.preventDefault();
         validateInputs();
+        dispatch(checkAccessToken());
+
+        if (!isLogged) {
+            dispatch(logOut());
+            navigate("/login");
+        }
 
         if (validateInputs()) {
+            setLoading(true);
             // reset
             dispatch(resetHistorgams());
             dispatch(resetDocuments());
             
-            // get
+            // requests
             dispatch(fetchHistograms(data));
             fetchObjectSearch(data)
             .then((response) => {
-                console.log(response.items);
-                // navigate("/results");
+                dispatch(fetchDocuments(response.items.map((item: any) => item.encodedId)));
+                resetInputs();
+                setLoading(false);
+                navigate("/results");
             })
             .catch((error) => {
                 console.error(error);
+                setLoading(false);
             })
         }
     }
@@ -217,18 +229,23 @@ export const SearchForm: React.FC = () => {
 
                 <div className={styles.form__right_section}>
                     <div className={styles.checkboxs__list}>
-                        <div className={styles.checkbox__wrappper}><img src={maxFullness ? checkActive : checkIcon} onClick={() => setMaxFullness(maxFullness = !maxFullness)} alt='' /><span className={!maxFullness ? styles.un_search__params_span : styles.search__params_span}>Признак максимальной полноты</span></div>
-                        <div className={styles.checkbox__wrappper}><img src={inBusinessNews ? checkActive : checkIcon} onClick={() => setInBusinessNews(inBusinessNews = !inBusinessNews)} alt='' /><span className={!inBusinessNews ? styles.un_search__params_span : styles.search__params_span}>Упоминания в бизнес-контексте</span></div>
-                        <div className={styles.checkbox__wrappper}><img src={onlyMainRole ? checkActive : checkIcon} onClick={() => setOnlyMainRole(onlyMainRole = !onlyMainRole)} alt='' /><span className={!onlyMainRole ? styles.un_search__params_span : styles.search__params_span}>Главная роль в публикации</span></div>
-                        <div className={styles.checkbox__wrappper}><img src={onlyWithRiskFactors ? checkActive : checkIcon} onClick={() => setOnlyWithRiskFactors(onlyWithRiskFactors = !onlyWithRiskFactors)} alt='' /><span className={!onlyWithRiskFactors ? styles.un_search__params_span : styles.search__params_span}>Публикации только с риск-факторами</span></div>
-                        <div className={styles.checkbox__wrappper}><img src={includeTechNews ? checkActive : checkIcon} onClick={() => setIncludeTechNews(includeTechNews = !includeTechNews)} alt='' /><span className={!includeTechNews ? styles.un_search__params_span : styles.search__params_span}>Включать технические новости рынков</span></div>
-                        <div className={styles.checkbox__wrappper}><img src={includeAnnouncements ? checkActive : checkIcon} onClick={() => setIncludeAnnouncements(includeAnnouncements = !includeAnnouncements)} alt='' /><span className={!includeAnnouncements ? styles.un_search__params_span : styles.search__params_span}>Включать анонсы и календари</span></div>
-                        <div className={styles.checkbox__wrappper}><img src={includeDigests ? checkActive : checkIcon} onClick={() => setIncludeDigests(includeDigests = !includeDigests)} alt='' /><span className={!includeDigests ? styles.un_search__params_span : styles.search__params_span}>Включать сводки новостей</span></div>
+                        <div className={styles.checkbox__wrappper}><button type='button' onClick={() => setMaxFullness(maxFullness = !maxFullness)}><img src={maxFullness ? checkActive : checkIcon} alt='' /></button><span className={!maxFullness ? styles.un_search__params_span : styles.search__params_span}>Признак максимальной полноты</span></div>
+                        <div className={styles.checkbox__wrappper}><button type='button' onClick={() => setInBusinessNews(inBusinessNews = !inBusinessNews)}><img src={inBusinessNews ? checkActive : checkIcon} alt='' /></button><span className={!inBusinessNews ? styles.un_search__params_span : styles.search__params_span}>Упоминания в бизнес-контексте</span></div>
+                        <div className={styles.checkbox__wrappper}><button type='button' onClick={() => setOnlyMainRole(onlyMainRole = !onlyMainRole)}><img src={onlyMainRole ? checkActive : checkIcon} alt='' /></button><span className={!onlyMainRole ? styles.un_search__params_span : styles.search__params_span}>Главная роль в публикации</span></div>
+                        <div className={styles.checkbox__wrappper}><button type='button' onClick={() => setOnlyWithRiskFactors(onlyWithRiskFactors = !onlyWithRiskFactors)}><img src={onlyWithRiskFactors ? checkActive : checkIcon} alt='' /></button><span className={!onlyWithRiskFactors ? styles.un_search__params_span : styles.search__params_span}>Публикации только с риск-факторами</span></div>
+                        <div className={styles.checkbox__wrappper}><button type='button' onClick={() => setIncludeTechNews(includeTechNews = !includeTechNews)}><img src={includeTechNews ? checkActive : checkIcon} alt='' /></button><span className={!includeTechNews ? styles.un_search__params_span : styles.search__params_span}>Включать технические новости рынков</span></div>
+                        <div className={styles.checkbox__wrappper}><button type='button' onClick={() => setIncludeAnnouncements(includeAnnouncements = !includeAnnouncements)}><img src={includeAnnouncements ? checkActive : checkIcon} alt='' /></button><span className={!includeAnnouncements ? styles.un_search__params_span : styles.search__params_span}>Включать анонсы и календари</span></div>
+                        <div className={styles.checkbox__wrappper}><button type='button' onClick={() => setIncludeDigests(includeDigests = !includeDigests)}><img src={includeDigests ? checkActive : checkIcon} alt='' /></button><span className={!includeDigests ? styles.un_search__params_span : styles.search__params_span}>Включать сводки новостей</span></div>
                     </div>
 
                     <div className={styles.button__down_container}>
                         <div className={styles.button__wrapper}>
-                            <button type='submit' className={styles.button}>Поиск</button>
+                            <button 
+                                type='submit' 
+                                className={styles.button}
+                            >
+                                {loading ? <ButtonLoader /> : 'Поиск'}
+                            </button>
                             <span>* Обязательные к заполнению поля</span>
                         </div>
                     </div>

@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAppDispatch } from '../../store/hook';
-import { fetchAuthorization } from '../../store/api';
+import { API_BASE_URL } from '../../utils/config';
+import { setAccessToken } from '../../store/slice/authorizationSlice';
 import { fetchAccountInfo } from '../../store/slice/accountInfoSlice';
 import { ButtonLoader } from '../Loader/ButtonLoader';
-import type { IUserData } from '../../types/data';
+import type { IUserData, IAccessToken } from '../../types/data';
 
 import styles from './LoginForm.module.scss';
 import googleIcon from '../../assets/icons/google.svg';
@@ -14,40 +15,49 @@ import lockIcon from '../../assets/images/login__lock-img.svg';
 
 
 export const LoginForm: React.FC = () => {
+    const navigate = useNavigate();
+    const dispatch = useAppDispatch();
+    
     const [login, setLogin] = useState('');
     const [password, setPassword] = useState('');
     const [isValue, setIsValue] = useState(false);
     const [loading, setLoading] = useState(false);
     const [errorLogin, setErrorLogin] = useState(false);
     const [errorPassword, setErrorPassword] = useState(false);
-    const navigate = useNavigate();
-    const dispatch = useAppDispatch();
 
     const userdata: IUserData = {
         login: login.trim(),
         password: password.trim(),
     }
 
-    function handleSubmit(e: React.FormEvent) {
+    async function handleSubmit(e: React.FormEvent) {
         e.preventDefault();
 
         if (login.trim() && password.trim()) {
             setLoading(true);
-            fetchAuthorization(userdata)
-            .then((response) => {
-                localStorage.setItem('token', response.accessToken);
-                dispatch(fetchAccountInfo(response.accessToken));
+
+            const response = await fetch(`${API_BASE_URL}/api/v1/account/login`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json-patch+json',
+                    Accept: 'application/json',
+                },
+                body: JSON.stringify(userdata)
+            })
+            const data = await response.json() as IAccessToken;
+            
+            if (response.ok) {
+                dispatch(setAccessToken(data));
+                dispatch(fetchAccountInfo(data.accessToken));
                 setErrorLogin(false);
                 setErrorPassword(false);
                 setLoading(false);
                 navigate("/");
-            })
-            .catch((error) => {
-                console.error(error);
+            } else {
                 setErrorLogin(true);
                 setErrorPassword(true);
                 setLoading(false);
-            })
+            }
 
             setLogin('');
             setPassword('');

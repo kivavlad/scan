@@ -7,7 +7,6 @@ type IState = {
         companyLimit: number;
     },
     loading: boolean;
-    isLogged: boolean;
     errorCode: any;
 }
 
@@ -17,7 +16,6 @@ const initialState: IState = {
         companyLimit: 0,
     },
     loading: false,
-    isLogged: false,
     errorCode: null,
 }
 
@@ -43,20 +41,14 @@ export const fetchAccountInfo = createAsyncThunk<IState, string>(
 const accountInfoSlice = createSlice({
     name: 'accountInfo',
     initialState,
-    reducers: {
-        setIsLogged(state) {
-            state.isLogged = false;
-        }
-    },
+    reducers: {},
     extraReducers(builder) {
         builder
             .addCase(fetchAccountInfo.pending, (state) => {
                 state.loading = true;
-                state.isLogged = true;
             })
             .addCase(fetchAccountInfo.rejected, (state, action) => {
                 state.errorCode = action.error;
-                state.isLogged = false;
                 state.loading = false;
             })
             .addCase(fetchAccountInfo.fulfilled, (state, action) => {
@@ -65,13 +57,9 @@ const accountInfoSlice = createSlice({
                 if (eventFiltersInfo) {
                     state.eventFiltersInfo = eventFiltersInfo;
                     state.loading = false;
-                    state.isLogged = true;
-                } else {
-                    state.isLogged = false;
                 }
             })
     },
 })
 
-export const { setIsLogged } = accountInfoSlice.actions;
 export default accountInfoSlice.reducer;

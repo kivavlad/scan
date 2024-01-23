@@ -24,7 +24,7 @@ export type IUserData = {
 
 export type IAccessToken = {
     accessToken: string;
-    expire: any;
+    expire: string;
 }
 
 export type ISearchParams = {
@@ -40,4 +40,8 @@ export type ISearchParams = {
     includeTechNews: boolean;
     includeAnnouncements: boolean;
     includeDigests: boolean;
+}
+
+export type IObjectSearch = {
+    items: [];
 }
