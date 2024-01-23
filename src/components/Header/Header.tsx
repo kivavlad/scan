@@ -3,7 +3,7 @@ import { useAppDispatch, useAppSelector } from '../../store/hook';
 import { Link, useNavigate } from 'react-router-dom';
 import { fetchAccountInfo } from '../../store/slice/accountInfoSlice';
 import { TOKEN } from '../../utils/config';
-import { setIsLogged } from '../../store/slice/accountInfoSlice';
+import { checkAccessToken, logOut } from '../../store/slice/authorizationSlice';
 import { HeaderBurger } from '../HeaderBurger/HeaderBurger';
 import { AccountInfo } from './AccountInfo';
 
@@ -14,16 +14,18 @@ import logo from '../../assets/icons/header-logo.svg';
 export const Header: React.FC = () => {
     const navigate = useNavigate();
     const dispatch = useAppDispatch();
-    const isLogged = useAppSelector((state) => state.info.isLogged);
+    const isLogged = useAppSelector((state) => state.auth.isLogged);
 
     function handleLogOut() {
-        dispatch(setIsLogged());
-        localStorage.clear();
+        dispatch(logOut());
         navigate("/");
     }
 
     useEffect(() => {
-        if (TOKEN !== null) dispatch(fetchAccountInfo(TOKEN));
+        if (TOKEN !== null) {
+            dispatch(fetchAccountInfo(TOKEN));
+            dispatch(checkAccessToken());
+        }
     }, [dispatch])
 
     return (

@@ -1,10 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { API_BASE_URL } from '../../utils/config';
 
-type Iids = {
-    ids: [];
-}
-
 type IState = {
     documents: any[];
     loading: boolean;
@@ -17,9 +13,9 @@ const initialState: IState = {
     error: false,
 }
 
-export const fetchDocuments = createAsyncThunk<IState, Iids>(
+export const fetchDocuments = createAsyncThunk<IState, any>(
     'documents/fetchDocuments',
-    async function (ids) {
+    async function (ids: string[]) {
         const response = await fetch(`${API_BASE_URL}/api/v1/documents`, {
             method: 'POST',
             headers: {
@@ -27,7 +23,7 @@ export const fetchDocuments = createAsyncThunk<IState, Iids>(
                 Accept: 'application/json',
                 Authorization: `Bearer ${localStorage.getItem('token')}`
             },
-            body: JSON.stringify(ids)
+            body: JSON.stringify({ ids: ids })
         })
 
         if (!response.ok) throw new Error('Error');

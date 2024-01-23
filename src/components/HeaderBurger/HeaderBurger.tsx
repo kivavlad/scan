@@ -1,7 +1,7 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { useAppSelector, useAppDispatch } from '../../store/hook';
-import { setIsLogged } from '../../store/slice/accountInfoSlice';
+import { logOut } from '../../store/slice/authorizationSlice';
 
 import styles from './HeaderBurger.module.scss';
 import logo from '../../assets/icons/scan-white-logo.svg';
@@ -9,7 +9,7 @@ import closeIcon from '../../assets/icons/close-icon.svg';
 
 export const HeaderBurger: React.FC = () => {
     const [activeBurger, setActiveBurger] = useState(false);
-    const isLogged = useAppSelector((state) => state.info.isLogged);
+    const isLogged = useAppSelector((state) => state.auth.isLogged);
     const data = useAppSelector((state) => state.info.eventFiltersInfo);
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
@@ -20,8 +20,7 @@ export const HeaderBurger: React.FC = () => {
     }
 
     function handleLogOut() {
-        dispatch(setIsLogged());
-        localStorage.clear();
+        dispatch(logOut());
         navigate("/");
         setActiveBurger(false);
     }
