@@ -23,7 +23,9 @@ export const fetchDocuments = createAsyncThunk<IState, any>(
                 Accept: 'application/json',
                 Authorization: `Bearer ${localStorage.getItem('token')}`
             },
-            body: JSON.stringify({ ids: ids })
+            body: JSON.stringify({
+                ids: ids 
+            })
         })
 
         if (!response.ok) throw new Error('Error');
@@ -50,7 +52,10 @@ const documentsSlice = createSlice({
                 state.loading = false;
             })
             .addCase(fetchDocuments.fulfilled, (state, action) => {
-                console.log(action.payload)
+                state.documents.push(action.payload);
+                state.error = false;
+                state.loading = false;
+                console.log(action.payload);
             })
     },
 })

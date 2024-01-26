@@ -25,20 +25,19 @@ const authorizationSlice = createSlice({
                 state.exspire = expire;
                 state.isLogged = true;
                 localStorage.setItem('token', accessToken);
-                localStorage.setItem('expire', expire);
             }
         },
         checkAccessToken(state) {
-            if (!localStorage.getItem('token')) return initialState;
-
-            const expireStr: string | any = localStorage.getItem('expire');
+            const expireStr = state.exspire;
             const expireDate = new Date(expireStr);
             const nowDate = new Date();
 
             if (expireDate > nowDate) {
                 state.isLogged = true;
+                console.log('isLogged');
             } else {
                 state.isLogged = false;
+                console.log('unLogged');
             }
         },
         logOut() {

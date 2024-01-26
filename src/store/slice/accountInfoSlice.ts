@@ -21,13 +21,13 @@ const initialState: IState = {
 
 export const fetchAccountInfo = createAsyncThunk<IState, string>(
     'accountInfo/fetchAccountInfo',
-    async function (token) {
+    async function (accessToken) {
         const response = await fetch(`${API_BASE_URL}/api/v1/account/info`, {
             method: "GET",
             headers: {
                 Accept: 'application/json',
                 'Content-Type': 'application/json-patch+json',
-                Authorization: `Bearer ${token}`
+                Authorization: `Bearer ${accessToken}`
             }
         })
 

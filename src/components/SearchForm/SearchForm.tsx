@@ -1,10 +1,9 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useAppDispatch, useAppSelector } from '../../store/hook';
+import { useAppDispatch } from '../../store/hook';
 import { fetchObjectSearch } from '../../store/api';
 import { fetchHistograms ,resetHistorgams } from '../../store/slice/histogramsSlice';
 import { fetchDocuments, resetDocuments } from '../../store/slice/documentsSlice';
-import { checkAccessToken, logOut } from '../../store/slice/authorizationSlice';
 import { TONALITY_PARAMS } from '../../utils/config';
 import { currentInnNumber, comparisonWithStartDate, validateDateRange, } from '../../utils/validate';
 import { ButtonLoader } from '../Loader/ButtonLoader';
@@ -18,7 +17,6 @@ import checkActive from '../../assets/icons/checkbox-active.svg';
 export const SearchForm: React.FC = () => {
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
-    const isLogged = useAppSelector((state) => state.auth.isLogged);
 
     const [loading, setLoading] = useState(false);
     const [inn, setInn] = useState('');
@@ -132,12 +130,6 @@ export const SearchForm: React.FC = () => {
     function handleSubmit(e: React.FormEvent) {
         e.preventDefault();
         validateInputs();
-        dispatch(checkAccessToken());
-
-        if (!isLogged) {
-            dispatch(logOut());
-            navigate("/login");
-        }
 
         if (validateInputs()) {
             setLoading(true);
