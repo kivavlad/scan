@@ -1,9 +1,8 @@
 import { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../../store/hook';
-import { Link, useNavigate } from 'react-router-dom';
 import { fetchAccountInfo } from '../../store/slice/accountInfoSlice';
-import { TOKEN } from '../../utils/config';
-import { checkAccessToken, logOut } from '../../store/slice/authorizationSlice';
+import { Link, useNavigate } from 'react-router-dom';
+import { logOut } from '../../store/slice/authorizationSlice';
 import { HeaderBurger } from '../HeaderBurger/HeaderBurger';
 import { AccountInfo } from './AccountInfo';
 
@@ -15,18 +14,18 @@ export const Header: React.FC = () => {
     const navigate = useNavigate();
     const dispatch = useAppDispatch();
     const isLogged = useAppSelector((state) => state.auth.isLogged);
+    const accessToken = useAppSelector((state) => state.auth.accessToken);
+
+    useEffect(() => {
+        if (isLogged) {
+            dispatch(fetchAccountInfo(accessToken));
+        }
+    }, [dispatch, isLogged, accessToken])
 
     function handleLogOut() {
         dispatch(logOut());
         navigate("/");
     }
-
-    useEffect(() => {
-        if (TOKEN !== null) {
-            dispatch(fetchAccountInfo(TOKEN));
-            dispatch(checkAccessToken());
-        }
-    }, [dispatch])
 
     return (
         <header className={styles.header}>

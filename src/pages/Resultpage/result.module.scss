@@ -1,0 +1,52 @@
+.hero__section {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 25px;
+}
+
+.hero__text_wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.hero__title {
+    font-family: 'Ferry';
+    font-size: 38px;
+    line-height: 44px;
+}
+
+.hero__subtitle {
+    font-size: 16px;
+    line-height: 22px;
+    width: 320px;
+}
+
+.table__section {
+    display: flex;
+    flex-direction: column;
+}
+
+.sections__title {
+    font-family: 'Ferry';
+    font-size: 28px;
+}
+
+.table__subtitle {
+    font-size: 16px;
+    color: var(--gray-400);
+    margin: 15px 0 25px 0;
+}
+
+.table__results_wrapper {
+    width: 100%;
+}
+
+.cards__section {
+    margin: 110px 0;
+}
+
+.cards__wrapper {
+    margin-top: 58px;
+}
