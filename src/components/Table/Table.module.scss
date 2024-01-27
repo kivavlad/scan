@@ -10,6 +10,10 @@
     height: 150px;
     border-radius: 10px;
     border: 2px solid var(--green-blue);
+
+    @media (max-width: 700px) {
+        width: 85%;
+    }
 }
 
 .table__description {
@@ -29,10 +33,11 @@
     }
 }
 
-.slider__wrapper {
+.table__slider_wrapper {
     display: flex;
     align-items: center;
     width: 100%;
+    overflow: hidden;
 }
 
 .table__content {
@@ -44,6 +49,7 @@
     width: 137px;
     height: 100%;
     position: relative;
+    transition: .2s ease;
     
     &::before {
         position: absolute;
@@ -57,5 +63,22 @@
 
     p {
         font-size: 18px;
+    }
+}
+
+.table__title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+
+    h2 {
+        font-family: 'Ferry';
+        font-size: 22px;
+
+        @media (max-width: 550px) {
+            font-size: 18px;
+            padding: 0 15px;
+        }
     }
 }

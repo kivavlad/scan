@@ -55,7 +55,6 @@ const documentsSlice = createSlice({
                 state.documents.push(action.payload);
                 state.error = false;
                 state.loading = false;
-                console.log(action.payload);
             })
     },
 })

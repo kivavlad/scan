@@ -7,6 +7,7 @@ import { Homepage } from "../../pages/Homepage/Homepage";
 import { Loginpage } from "../../pages/Loginpage/Loginpage";
 import { Searchpage } from "../../pages/Searchpage/Searchpage";
 import { Resultpage } from '../../pages/Resultpage/Resultpage';
+import { Notfoundpage } from '../../pages/Notfoundpage/Notfoundpage';
 
 export const App: React.FC = () => {
     const dispatch = useAppDispatch();
@@ -26,6 +27,7 @@ export const App: React.FC = () => {
                     <Route path="/login" element={<Loginpage />} />
                     <Route path="/search" element={<Searchpage />} />
                     <Route path="/results" element={<Resultpage />} />
+                    <Route path='*' element={<Notfoundpage />} />
                 </Route>
             </Routes>
         </>

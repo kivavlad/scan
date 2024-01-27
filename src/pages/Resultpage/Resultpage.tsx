@@ -23,7 +23,7 @@ export const Resultpage: React.FC = () => {
 
                 <div className={styles.table__section}>
                     <h1 className={styles.sections__title}>Общая сводка</h1>
-                    <p className={styles.table__subtitle}>Найдено {documentsList[0]?.length} вариантов</p>
+                    <p className={styles.table__subtitle}>Найдено {documentsList[0]?.length || 0} вариантов</p>
                     <div className={styles.table__results_wrapper}>
                         <Table />
                     </div>
