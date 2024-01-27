@@ -34,10 +34,8 @@ const authorizationSlice = createSlice({
 
             if (expireDate > nowDate) {
                 state.isLogged = true;
-                console.log('isLogged');
             } else {
                 state.isLogged = false;
-                console.log('unLogged');
             }
         },
         logOut() {

@@ -50,18 +50,10 @@ export const formattedDate = (dateStr: string) => {
 
 export function transformWords(num: number, words: any) {  
 	let n = num % 10;
-
-	if (num > 10 && num < 20) {
-        return `${num} ${words[2]}`;
-    }
-
-	if (n > 1 && n < 5) {
-        return `${num} ${words[1]}`;
-    }
-
-	if (n === 1) {
-        return `${num} ${words[0]}`;
-    } 
-
+    
+	if (num > 10 && num < 20) return `${num} ${words[2]}`;
+	if (n > 1 && n < 5) return `${num} ${words[1]}`;
+	if (n === 1) return `${num} ${words[0]}`;
+    
 	return `${num} ${words[2]}`;
 }

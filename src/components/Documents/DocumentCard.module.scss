@@ -3,6 +3,14 @@
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 38px;
+
+    @media (max-width: 1100px) {
+        gap: 28px;
+    }
+
+    @media (max-width: 800px) {
+        grid-template-columns: repeat(1, 1fr);
+    }
 }
 
 .documents__button {
@@ -22,20 +30,46 @@
         color: var(--white);
         transition: .2s ease;
 
+        @media (max-width: 500px) {
+            width: 100%;
+        }
+
         &:active {
             transform: scale(0.95);
         }
     }
 }
 
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+    width: 100%;
+    margin-top: 100px;
+}
+
+.title {
+    font-family: 'Ferry';
+    font-size: 22px;
+}
+
 /* Card */
 .card__container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     width: 100%;
     min-height: 690px;
     border-radius: 10px;
     overflow: hidden;
     padding: 19px 30px 35px 30px;
     box-shadow: 0px 0px 20px 0px #00000033;
+
+    @media (max-width: 1100px) {
+        padding: 19px 15px 35px 15px;
+    }
 }
 
 .card__header {
@@ -54,18 +88,31 @@
     flex-direction: column;
     gap: 14px;
     margin: 24px 0 34px 0;
+
+    @media (max-width: 500px) {
+        margin: 18px 0 34px 0;
+    }
 }
 
 .card__title_wrapper {
     width: 100%;
     height: 66px;
     overflow: hidden;
+
+    @media (max-width: 1100px) {
+        height: 60px;
+    }
 }
 
 .card__title {
     font-size: 26px;
     font-weight: 500;
     line-height: 32px;
+
+    @media (max-width: 1100px) {
+        font-size: 22px;
+        line-height: 28px;
+    }
 }
 
 .card__attributes {
@@ -91,6 +138,10 @@
     border-radius: 10px;
     overflow: hidden;
 
+    @media (max-width: 500px) {
+        height: 100px;
+    }
+
     img {
         width: 100%;
         height: auto;
@@ -100,6 +151,10 @@
 .card__text_content {
     margin-top: 20px;
     min-height: 200px;
+
+    @media (max-width: 500px) {
+        margin-top: 10px;
+    }
 
     p {
         font-size: 16px;
