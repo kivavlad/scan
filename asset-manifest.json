@@ -1,10 +1,12 @@
 {
   "files": {
-    "main.css": "/Scan-service-ts/static/css/main.9072c313.css",
-    "main.js": "/Scan-service-ts/static/js/main.aacad0e6.js",
+    "main.css": "/Scan-service-ts/static/css/main.4de386aa.css",
+    "main.js": "/Scan-service-ts/static/js/main.e7fe346f.js",
     "static/media/header-logo.svg": "/Scan-service-ts/static/media/header-logo.d6731ab5578db6ce8442c37221685db3.svg",
     "static/media/hero-img.jpg": "/Scan-service-ts/static/media/hero-img.b8b2509f2b16833f89bb.jpg",
     "static/media/ferry_black.otf": "/Scan-service-ts/static/media/ferry_black.8d1c2bfebe1bfba898ae.otf",
+    "static/media/card-bg.jpg": "/Scan-service-ts/static/media/card-bg.50716ddff1569a0500b0.jpg",
+    "static/media/result-logo.jpg": "/Scan-service-ts/static/media/result-logo.32fb4f49c57fa5a425c7.jpg",
     "static/media/scan-white-logo.svg": "/Scan-service-ts/static/media/scan-white-logo.f916e6d97df9bdf5ef614efcc28143da.svg",
     "static/media/search-page_bg.svg": "/Scan-service-ts/static/media/search-page_bg.fe947776a816c731209ae32dd2a81b8d.svg",
     "static/media/login__bg.jpg": "/Scan-service-ts/static/media/login__bg.fc446e87b8be48e48b8a.jpg",
@@ -33,11 +35,11 @@
     "index.html": "/Scan-service-ts/index.html",
     "static/media/close-icon.svg": "/Scan-service-ts/static/media/close-icon.bfb90a0ce9d8f2d7e2e981368630c821.svg",
     "static/media/checkbox__container.svg": "/Scan-service-ts/static/media/checkbox__container.8a5f042aff79779abee8c52cb49dc43f.svg",
-    "main.9072c313.css.map": "/Scan-service-ts/static/css/main.9072c313.css.map",
-    "main.aacad0e6.js.map": "/Scan-service-ts/static/js/main.aacad0e6.js.map"
+    "main.4de386aa.css.map": "/Scan-service-ts/static/css/main.4de386aa.css.map",
+    "main.e7fe346f.js.map": "/Scan-service-ts/static/js/main.e7fe346f.js.map"
   },
   "entrypoints": [
-    "static/css/main.9072c313.css",
-    "static/js/main.aacad0e6.js"
+    "static/css/main.4de386aa.css",
+    "static/js/main.e7fe346f.js"
   ]
 }
