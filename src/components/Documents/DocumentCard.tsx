@@ -12,7 +12,7 @@ export const DocumentCard: React.FC = (props: any) => {
         <div className={styles.card__container}>
             <div className={styles.card__header}>
                 <span>{formattedDate(issueDate)}</span>
-                <span>{name.slice(0, 30)}</span>
+                <span>{name}</span>
             </div>
 
             <div className={styles.card__main}>
