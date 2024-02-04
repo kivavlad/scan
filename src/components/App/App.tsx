@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useAppSelector, useAppDispatch } from '../../store/hook';
-import { checkAccessToken, logOut } from '../../store/slice/authorizationSlice';
+import { setIsLogged, logOut } from '../../store/slice/authorizationSlice';
 import { Routes, Route } from "react-router-dom";
 import { Layout } from "../Layout/Layout";
 import { Homepage } from "../../pages/Homepage/Homepage";
@@ -14,7 +14,7 @@ export const App: React.FC = () => {
     const isLogged = useAppSelector((state) => state.auth.isLogged);
 
     useEffect(() => {
-        dispatch(checkAccessToken());
+        dispatch(setIsLogged());
         if (!isLogged) dispatch(logOut());
     }, [dispatch, isLogged])
 

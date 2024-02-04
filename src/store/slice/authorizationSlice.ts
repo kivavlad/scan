@@ -27,7 +27,7 @@ const authorizationSlice = createSlice({
                 localStorage.setItem('token', accessToken);
             }
         },
-        checkAccessToken(state) {
+        setIsLogged(state) {
             const expireStr = state.exspire;
             const expireDate = new Date(expireStr);
             const nowDate = new Date();
@@ -45,5 +45,5 @@ const authorizationSlice = createSlice({
     }
 })
 
-export const { setAccessToken, checkAccessToken, logOut } = authorizationSlice.actions;
+export const { setAccessToken, setIsLogged, logOut } = authorizationSlice.actions;
 export default authorizationSlice.reducer;
